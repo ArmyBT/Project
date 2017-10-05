@@ -17,11 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import net.sourceforge.jdatepicker.util.JDatePickerUtil;
-import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
-import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
-import net.sourceforge.jdatepicker.JDateComponentFactory;
-import net.sourceforge.jdatepicker.graphics.JPreviousIcon;
+
 import javax.swing.JFormattedTextField;
 import com.toedter.calendar.JDateChooser;
 
