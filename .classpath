@@ -3,10 +3,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="ucanaccess/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="ucanaccess/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="ucanaccess/hsqldb.jar"/>
-	<classpathentry kind="lib" path="ucanaccess/jackcess-2.1.6.jar"/>
-	<classpathentry kind="lib" path="ucanaccess/ucanaccess-4.0.2.jar"/>
+	<classpathentry kind="lib" path="commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="hsqldb.jar"/>
+	<classpathentry kind="lib" path="jackcess-2.1.6.jar"/>
+	<classpathentry kind="lib" path="ucanaccess-4.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

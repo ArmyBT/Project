@@ -2,31 +2,36 @@ package Customer;
 
 import java.awt.EventQueue;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
 import java.awt.Font;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JRadioButton;
+
 import java.awt.Label;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
 import javax.swing.JFormattedTextField;
+
 import com.toedter.calendar.JDateChooser;
+
+import javax.swing.JPasswordField;
 
 public class RegisterForm {
 
 	private JFrame frame;
 	private JTextField usernametf;
-	private JTextField passwordtf;
-	private JTextField textField;
+	private JPasswordField passwordtf;
 
 	/**
 	 * Launch the application.
@@ -56,7 +61,7 @@ public class RegisterForm {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 533, 434);
+		frame.setBounds(100, 100, 533, 337);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblLogin = new JLabel("Register");
@@ -71,125 +76,89 @@ public class RegisterForm {
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
-		passwordtf = new JTextField();
-		passwordtf.setColumns(10);
-		
 		JButton btnCancel = new JButton("Cancel");
 		
-		JButton btnLogin = new JButton("Login");
+		JButton btnLogin = new JButton("Sign up");
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Company");
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Appllicant");
+		
+		ButtonGroup groupStatus = new ButtonGroup();
+		groupStatus.add(rdbtnNewRadioButton);
+		groupStatus.add(rdbtnNewRadioButton_1);
+		
 		
 		JButton btnClickHereTo = new JButton("Click Here to Login");
 		
 		JLabel lblCandidateStatus = new JLabel("Candidate status:");
 		lblCandidateStatus.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
-		JLabel lblConfirmPassword = new JLabel("Address:");
-		lblConfirmPassword.setFont(new Font("Tahoma", Font.BOLD, 18));
-		
-		JTextArea textArea = new JTextArea();
-		
-		JLabel lblNewLabel = new JLabel("Birthday:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		
-		JDateChooser dateChooser = new JDateChooser();
-		
-		JLabel lblPhoneNumber = new JLabel("Phone Number:");
-		lblPhoneNumber.setFont(new Font("Tahoma", Font.BOLD, 18));
-		
-		textField = new JTextField();
-		textField.setColumns(10);
+		passwordtf = new JPasswordField();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(453, Short.MAX_VALUE)
+					.addContainerGap(41, Short.MAX_VALUE)
 					.addComponent(lblLogin)
-					.addGap(291))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(141)
+					.addComponent(btnClickHereTo, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(21)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblCandidateStatus)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addComponent(lblPassword)
+							.addComponent(lblUsername)))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblCandidateStatus)
-								.addComponent(lblUsername))
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(rdbtnNewRadioButton)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(rdbtnNewRadioButton_1))
-								.addComponent(usernametf, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblPhoneNumber)
-								.addComponent(lblNewLabel)
-								.addComponent(lblPassword)
-								.addComponent(lblConfirmPassword))
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
-								.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-									.addComponent(passwordtf, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)
-									.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE)))))
-					.addContainerGap(459, Short.MAX_VALUE))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-					.addGap(334)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnClickHereTo, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnCancel)
-							.addGap(18)
-							.addComponent(btnLogin)))
-					.addContainerGap(445, Short.MAX_VALUE))
+							.addComponent(rdbtnNewRadioButton)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(rdbtnNewRadioButton_1))
+						.addComponent(usernametf, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+						.addComponent(passwordtf, Alignment.TRAILING))
+					.addContainerGap(57, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(301)
+					.addComponent(btnCancel)
+					.addGap(18)
+					.addComponent(btnLogin)
+					.addContainerGap(76, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblLogin, GroupLayout.PREFERRED_SIZE, 108, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(rdbtnNewRadioButton)
-								.addComponent(rdbtnNewRadioButton_1))
-							.addGap(12))
+							.addComponent(lblLogin, GroupLayout.PREFERRED_SIZE, 112, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(rdbtnNewRadioButton)
+										.addComponent(rdbtnNewRadioButton_1))
+									.addGap(12))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblCandidateStatus)
+									.addPreferredGap(ComponentPlacement.UNRELATED))))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblCandidateStatus)
-							.addPreferredGap(ComponentPlacement.UNRELATED)))
+							.addComponent(btnClickHereTo)
+							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(usernametf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblUsername))
-					.addGap(8)
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(passwordtf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPassword))
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(12)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblConfirmPassword, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel))
-					.addGap(6)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(2))
-						.addComponent(lblPhoneNumber))
-					.addGap(5)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnCancel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnClickHereTo)
-					.addContainerGap())
+						.addComponent(btnCancel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+					.addGap(119))
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
