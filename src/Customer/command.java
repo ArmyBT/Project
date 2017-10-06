@@ -13,7 +13,7 @@ public class command {
 		Scanner input = new Scanner(System.in);
 
 		System.out
-				.println("enter data base want see 1=com 2=cus 3=applying 4=offer");
+				.println("enter data base want see 1=com 2=cus 3=applying 4=offer: ");
 		String data = input.nextLine();
 
 		try {
