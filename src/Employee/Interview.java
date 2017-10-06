@@ -11,6 +11,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Button;
 import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class Interview {
 
@@ -87,6 +89,7 @@ public class Interview {
 		frame.getContentPane().add(radioButton);
 		
 		JRadioButton radioButton_1 = new JRadioButton("\u0E44\u0E21\u0E48\u0E1C\u0E48\u0E32\u0E19");
+		radioButton_1.setHorizontalAlignment(SwingConstants.CENTER);
 		radioButton_1.setFont(new Font("TH Sarabun New", Font.BOLD, 17));
 		radioButton_1.setForeground(new Color(255, 0, 0));
 		radioButton_1.setBounds(362, 138, 59, 23);
@@ -106,14 +109,10 @@ public class Interview {
 		dateChooser_1.setBounds(269, 203, 116, 20);
 		frame.getContentPane().add(dateChooser_1);
 		
-		Label label_6 = new Label("\u0E40\u0E27\u0E25\u0E32");
+		Label label_6 = new Label("\u0E40\u0E27\u0E25\u0E32 09 : 00 \u0E19.");
 		label_6.setFont(new Font("TH Sarabun New", Font.BOLD, 13));
-		label_6.setBounds(391, 201, 28, 22);
+		label_6.setBounds(391, 201, 97, 22);
 		frame.getContentPane().add(label_6);
-		
-		TextField textField_2 = new TextField();
-		textField_2.setBounds(422, 201, 89, 22);
-		frame.getContentPane().add(textField_2);
 		
 		Label label_7 = new Label("\u0E2B\u0E32\u0E01\u0E21\u0E35\u0E02\u0E49\u0E2D\u0E2A\u0E07\u0E2A\u0E31\u0E22\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21 \u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E2A\u0E2D\u0E1A\u0E16\u0E32\u0E19\u0E44\u0E14\u0E49\u0E17\u0E35\u0E48 Facebook : Nong Singsom, Nu'man Arsengbaramae");
 		label_7.setFont(new Font("TH Sarabun New", Font.BOLD, 13));
