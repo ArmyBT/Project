@@ -25,7 +25,7 @@ public class command {
 		try {
 
 			Connection conn = DriverManager
-					.getConnection("jdbc:ucanaccess://C:/Users/numan/git/Project/AdvoopPrj/prjoop.accdb");
+					.getConnection("jdbc:ucanaccess://C:\\Users\\Nong\\workspace\\Project\\AdvoopPrj\\prjoop.accdb");
 			Statement s = conn.createStatement();
 
 			// s.executeUpdate("insert into lab6 (sakul,country,cast) values('fsf','Gafme',12345)");
