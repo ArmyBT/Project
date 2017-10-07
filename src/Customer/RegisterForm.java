@@ -38,7 +38,7 @@ import java.awt.event.ActionEvent;
 
 public class RegisterForm {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField usernametf;
 	private JPasswordField passwordtf;
 	String query, sql, driver;

@@ -15,12 +15,15 @@ import javax.swing.JRadioButton;
 import java.awt.Label;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class Login {
 
 	JFrame frame;
 	private JTextField usernametf;
-	private JTextField passwordtf;
+	private JPasswordField passwordtf;
 
 	/**
 	 * Launch the application.
@@ -65,14 +68,29 @@ public class Login {
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
-		passwordtf = new JTextField();
-		passwordtf.setColumns(10);
-		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				usernametf.setText(null);
+				passwordtf.setText(null);
+			}
+		});
 		
 		JButton btnLogin = new JButton("Login");
 		
 		JButton btnClickHereTo = new JButton("Click Here to Create a new account");
+		btnClickHereTo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RegisterForm window = new RegisterForm();
+				window.frame.setVisible(true);
+				
+				frame.dispose();
+				
+			}
+		});
+		
+		passwordtf = new JPasswordField();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -81,19 +99,22 @@ public class Login {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(29)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblUsername)
-									.addGap(18)
-									.addComponent(usernametf, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblPassword)
-									.addGap(18)
-									.addComponent(passwordtf, GroupLayout.PREFERRED_SIZE, 263, GroupLayout.PREFERRED_SIZE))
 								.addComponent(btnClickHereTo)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(btnCancel)
-									.addGap(18)
-									.addComponent(btnLogin))))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnLogin))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+											.addComponent(lblUsername)
+											.addGap(18))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(lblPassword)
+											.addGap(18)))
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(passwordtf)
+										.addComponent(usernametf, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)))))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(156)
 							.addComponent(lblLogin)))
@@ -110,8 +131,8 @@ public class Login {
 						.addComponent(lblUsername))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(passwordtf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblPassword))
+						.addComponent(lblPassword)
+						.addComponent(passwordtf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
