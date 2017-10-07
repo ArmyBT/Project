@@ -21,6 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -37,13 +38,15 @@ import java.awt.event.ActionEvent;
 
 public class RegisterForm {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField usernametf;
 	private JPasswordField passwordtf;
 	String query, sql, driver;
 	Statement stmt;
 	ResultSet rs;
 	Connection conn;
+	String checkun;
+	
 
 	/**
 	 * Launch the application.
@@ -84,6 +87,7 @@ try {
 			query = "SELECT * FROM com";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query);
+			
 		} catch (Exception eb) {
 			System.err.println(eb);
 
@@ -108,6 +112,13 @@ try {
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				usernametf.setText(null);
+				passwordtf.setText(null);
+			}
+		});
 		
 		JButton btnLogin = new JButton("Sign up");
 		
@@ -122,29 +133,39 @@ try {
 		
 		
 		JButton btnClickHereTo = new JButton("Click Here to Login");
+		btnClickHereTo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				Login window = new Login();
+				window.frame.setVisible(true);
+				
+				frame.dispose();
+
+			}
+		});
 		
 		JLabel lblCandidateStatus = new JLabel("Candidate status:");
 		lblCandidateStatus.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		passwordtf = new JPasswordField();
 		
+	
+		
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				String dio = null;
+				
+				
+				String un = usernametf.getText();
+				String ps = new String(passwordtf.getPassword());
+				String dio;
+				   dio = null;
 				if(rdbtnNewRadioButton.isSelected()){
 					dio = rdbtnNewRadioButton.getText();
 				}else if(rdbtnNewRadioButton_1.isSelected()){
 					dio = rdbtnNewRadioButton_1.getText();
 				}
-				
-				String un = usernametf.getText();
-				String ps = new String(passwordtf.getPassword());
-				
-				sql = "insert into cus (username,password,status) values('"
-						+ un + "','"
-						+ ps + "','"
-						+ dio + "')";
+			
 				
 
 				if(dio.equals("Company")){
@@ -154,26 +175,37 @@ try {
 							+ ps + "','"
 							+ dio + "')";
 					
+					checkun = "select * from com where username = ?";
 				}else if(dio.equals("Appllicant")){
 					
 					sql = "insert into cus (username,password,cusstatus) values('"
 							+ un + "','"
 							+ ps + "','"
 							+ dio + "')";
+					checkun = "select * from cus where username = ?";
 					
 				}
 				
 				
 				try {
 
-					stmt.executeUpdate(sql);
 					
+					PreparedStatement pstmt = conn.prepareStatement(checkun);
+					pstmt.setString(1,un);
+					ResultSet rs1= pstmt.executeQuery();
+					
+					if(rs1.next()){
+						JOptionPane.showMessageDialog(null,
+								"มี Username นี้อยู่แล้วกรุณาสมัครใหม่");
+						usernametf.setText(null);
+						passwordtf.setText(null);
+					}else{
 					if (stmt.executeUpdate(sql) != 0) {
 						JOptionPane.showMessageDialog(null,
 								"บันทึกข้อมูลเรียบร้อยแล้ว");}else{
 									JOptionPane.showMessageDialog(null,
 											"ERROR");}
-
+					}
 
 						/*rs.first();
 						textField1.setText(rs.getString(2));
