@@ -165,5 +165,17 @@ public class LoginForm {
 		});
 		btnCancle.setBounds(212, 185, 89, 23);
 		frame.getContentPane().add(btnCancle);
+		
+		JButton btnRegistry = new JButton("Registry");
+		btnRegistry.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				RegisterForm window = new RegisterForm();
+				window.frame.setVisible(true);
+				frame.dispose();
+			}
+		});
+		btnRegistry.setBounds(335, 11, 89, 23);
+		frame.getContentPane().add(btnRegistry);
 	}
 }
