@@ -72,7 +72,7 @@ try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 
 			conn = DriverManager
-					.getConnection("jdbc:ucanaccess://C:/Users/numan/git/Project/AdvoopPrj/prjoop.accdb");
+					.getConnection("jdbc:ucanaccess://C:/Users/Nong/workspace/Project/AdvoopPrj/prjoop.accdb");
 			//C:\Users\numan\git\Project\AdvoopPrj\prjoop.accdb
 
 			query = "SELECT * FROM com";
