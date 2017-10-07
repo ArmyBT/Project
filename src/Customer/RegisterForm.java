@@ -178,7 +178,7 @@ try {
 							+ dio + "')";
 					
 					checkun = "select * from login where username = ?";
-					type = "insert into com (comid) values('')";
+					
 				}else if(dio.equals("Appllicant")){
 					
 					sql = "insert into login (username,password,type) values('"
@@ -186,7 +186,7 @@ try {
 							+ ps + "','"
 							+ dio + "')";
 					checkun = "select * from login where username = ?";
-					type = "insert into cus (cusid) values('')";
+					
 				}
 				
 				check = "SELECT id FROM login where username = '" +un+ "'";

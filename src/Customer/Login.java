@@ -1,9 +1,12 @@
 package Customer;
 
+
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
@@ -12,19 +15,18 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JRadioButton;
 
-import java.awt.Label;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.JPasswordField;
+
+import Employee.Search;
 
 public class Login {
 
@@ -72,7 +74,7 @@ try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 
 			conn = DriverManager
-					.getConnection("jdbc:ucanaccess://C:/Users/numan/git/Project/AdvoopPrj/prjoop.accdb");
+					.getConnection("jdbc:ucanaccess://C:/AdvoopPrj/prjoop.accdb");
 			//C:\Users\numan\git\Project\AdvoopPrj\prjoop.accdb
 
 			query = "SELECT * FROM com";
@@ -105,11 +107,46 @@ try {
 			}
 		});
 		
+		String ps = new String(passwordtf.getPassword());
+		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
+				try{
+				String sql = " SELECT * FROM  login " +" WHERE username = ? " +" AND password = ? " ;
+				  PreparedStatement pre ;
+					pre = conn.prepareStatement(sql);
+					pre.setString(1, usernametf.getText());
+					pre.setString(2,ps);
+					ResultSet rec = pre.executeQuery();
+					if(rec.next()) {
+						JOptionPane.showMessageDialog(null, "Correct Username/Password");
+						String sLevel = rec.getString(3);
+						if(sLevel.equals("Company")) {
+							Search window = new Search();
+							window.frame.setVisible(true);
+							frame.dispose();
+							// Menu Admin
+							
+							} else if (sLevel.equals("Appllicant")){
+								
+								Home window4 = new Home();
+								window4.frame.setVisible(true);
+								frame.dispose();
+			
+						
+							// Menu User
+								
+							}
+						
+					} else {
+					JOptionPane.showMessageDialog(null, "Incorrect Username/Password");
+					}
+					} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage());
+					System.out.println(ex);
+					}
 				
 			}
 		});

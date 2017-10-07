@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Home {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTable table;
 
 	/**
