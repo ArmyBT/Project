@@ -138,7 +138,7 @@ try {
 		btnClickHereTo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				Login window = new Login();
+				LoginForm window = new LoginForm();
 				window.frame.setVisible(true);
 				
 				frame.dispose();
