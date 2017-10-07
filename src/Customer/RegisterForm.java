@@ -112,6 +112,13 @@ try {
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				usernametf.setText(null);
+				passwordtf.setText(null);
+			}
+		});
 		
 		JButton btnLogin = new JButton("Sign up");
 		
@@ -126,6 +133,16 @@ try {
 		
 		
 		JButton btnClickHereTo = new JButton("Click Here to Login");
+		btnClickHereTo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				Login window = new Login();
+				window.frame.setVisible(true);
+				
+				frame.dispose();
+
+			}
+		});
 		
 		JLabel lblCandidateStatus = new JLabel("Candidate status:");
 		lblCandidateStatus.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -179,7 +196,7 @@ try {
 					
 					if(rs1.next()){
 						JOptionPane.showMessageDialog(null,
-								"Username alrady Exits");
+								"มี Username นี้อยู่แล้วกรุณาสมัครใหม่");
 						usernametf.setText(null);
 						passwordtf.setText(null);
 					}else{
