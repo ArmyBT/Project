@@ -152,6 +152,9 @@ public class LoginForm {
 		btnLogin.setBounds(311, 185, 89, 23);
 		frame.getContentPane().add(btnLogin);
 		
+		frame.getRootPane().setDefaultButton(btnLogin);
+		btnLogin.requestFocus();
+		
 		JButton btnCancle = new JButton("Cancle");
 		btnCancle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
