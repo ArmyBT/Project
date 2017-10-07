@@ -20,6 +20,7 @@ public class command {
 		String name = input.nextLine();
 		
 		String check = "";
+		String test = "";
 
 		try {
 
@@ -46,7 +47,10 @@ public class command {
 			  System.out.println("record not found");
 			
 			ResultSet rs = s.executeQuery(check);
-
+			
+			
+			
+			
 			while (rs.next()) {
 				// System.out.println(rs.getString(1));
 				if (data.equals("1")) {

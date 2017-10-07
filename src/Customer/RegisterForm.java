@@ -46,7 +46,9 @@ public class RegisterForm {
 	ResultSet rs;
 	Connection conn;
 	String checkun;
-	
+	String type;
+	String check;
+	String id;
 
 	/**
 	 * Launch the application.
@@ -81,7 +83,11 @@ try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 
 			conn = DriverManager
+<<<<<<< HEAD
 					.getConnection("jdbc:ucanaccess://C:/Users/Nong/workspace/Project/AdvoopPrj/prjoop.accdb");
+=======
+					.getConnection("jdbc:ucanaccess://C:/AdvoopPrj/prjoop.accdb");
+>>>>>>> 73ef325828054a0c7b64ac1ee27e41a02e28701d
 			//C:\Users\numan\git\Project\AdvoopPrj\prjoop.accdb
 
 			query = "SELECT * FROM com";
@@ -170,22 +176,24 @@ try {
 
 				if(dio.equals("Company")){
 					
-					sql = "insert into com (username,password,comstatus) values('"
+					sql = "insert into login (username,password,type) values('"
 							+ un + "','"
 							+ ps + "','"
 							+ dio + "')";
 					
-					checkun = "select * from com where username = ?";
+					checkun = "select * from login where username = ?";
+					type = "insert into com (comid) values('')";
 				}else if(dio.equals("Appllicant")){
 					
-					sql = "insert into cus (username,password,cusstatus) values('"
+					sql = "insert into login (username,password,type) values('"
 							+ un + "','"
 							+ ps + "','"
 							+ dio + "')";
-					checkun = "select * from cus where username = ?";
-					
+					checkun = "select * from login where username = ?";
+					type = "insert into cus (cusid) values('')";
 				}
 				
+				check = "SELECT id FROM login where username = '" +un+ "'";
 				
 				try {
 
@@ -205,16 +213,29 @@ try {
 								"บันทึกข้อมูลเรียบร้อยแล้ว");}else{
 									JOptionPane.showMessageDialog(null,
 											"ERROR");}
+					
+					
+					ResultSet rs = stmt.executeQuery(check);
+					while (rs.next()) {
+					 id = rs.getString(1);
+					}
+					String id1 = id;
+					//System.out.println(id1);
+					
+					if(dio.equals("Company")){
+						type = "insert into com (comid) values('"+id1+"')";
+					}else if(dio.equals("Appllicant")){
+						type = "insert into cus (cusid) values('"+id1+"')";
+					}
+					stmt.executeUpdate(type);
+					
 					}
 
-						/*rs.first();
-						textField1.setText(rs.getString(2));
-						textField2.setText(rs.getString(3));
-						textField3.setText(rs.getString(4));*/
+					
 					
 
 				} catch (Exception err) {
-					err.printStackTrace();
+					System.out.println(err);
 				}
 				
 				usernametf.setText(null);
