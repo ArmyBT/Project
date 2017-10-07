@@ -3,20 +3,27 @@ package Customer;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
 import java.awt.Font;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JRadioButton;
+
 import java.awt.Label;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.JPasswordField;
 
 public class Login {
@@ -24,6 +31,10 @@ public class Login {
 	JFrame frame;
 	private JTextField usernametf;
 	private JPasswordField passwordtf;
+	String query, sql, driver;
+	Statement stmt;
+	ResultSet rs;
+	Connection conn;
 
 	/**
 	 * Launch the application.
@@ -56,6 +67,23 @@ public class Login {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+try {
+			
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+
+			conn = DriverManager
+					.getConnection("jdbc:ucanaccess://C:/Users/numan/git/Project/AdvoopPrj/prjoop.accdb");
+			//C:\Users\numan\git\Project\AdvoopPrj\prjoop.accdb
+
+			query = "SELECT * FROM com";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			
+		} catch (Exception eb) {
+			System.err.println(eb);
+
+		}
+		
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setFont(new Font("Tahoma", Font.BOLD, 44));
 		
@@ -78,6 +106,13 @@ public class Login {
 		});
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				
+			}
+		});
 		
 		JButton btnClickHereTo = new JButton("Click Here to Create a new account");
 		btnClickHereTo.addActionListener(new ActionListener() {
