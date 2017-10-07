@@ -2,6 +2,7 @@ package Customer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
@@ -15,6 +16,10 @@ public class command {
 		System.out
 				.println("enter data base want see 1=com 2=cus 3=applying 4=offer: ");
 		String data = input.nextLine();
+		System.out.println("Check username: ");
+		String name = input.nextLine();
+		
+		String check = "";
 
 		try {
 
@@ -26,7 +31,21 @@ public class command {
 			// s.executeUpdate("insert into lab6 (sakul,country,cast) values('rwfe','32212',3223)");
 
 			
-			ResultSet rs = s.executeQuery("SELECT * FROM cus");
+			if(data.equals("1")){
+				check = "SELECT * FROM com";
+			}else if(data.equals("2")){
+				check = "SELECT * FROM cus";
+			}
+			
+			PreparedStatement pstmt = conn.prepareStatement("select * from cus where username = ? ");
+			pstmt.setString(1,name);
+			ResultSet rs1= pstmt.executeQuery();
+			if(rs1.next())
+			  System.out.println("record found");
+			else
+			  System.out.println("record not found");
+			
+			ResultSet rs = s.executeQuery(check);
 
 			while (rs.next()) {
 				// System.out.println(rs.getString(1));
@@ -47,6 +66,8 @@ public class command {
 							+ rs.getString(12) + "\t" + rs.getString(13) + "\t"
 							+ rs.getString(14));
 
+				}else{
+					System.out.println("Error");
 				}
 			}
 		} catch (Exception e) {
