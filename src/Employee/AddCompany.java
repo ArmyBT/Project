@@ -237,7 +237,7 @@ public class AddCompany {
 						+ dates + "#,phone='" + textPhone.getText() + "',ceo='"
 						+ textCEO.getText() + "',about='"
 						+ textContact.getText() + "',email='"
-						+ emailtf.getText() + "'";
+						+ emailtf.getText() + "'where comid = '" + comid + "'";
 
 				try {
 
