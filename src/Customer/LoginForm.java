@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
+import Employee.AddCompany;
 import Employee.Search;
 
 import java.awt.event.ActionListener;
@@ -31,6 +32,7 @@ public class LoginForm {
 	Statement stmt;
 	ResultSet rs;
 	Connection conn;
+	public int ses;
 
 	/**
 	 * Launch the application.
@@ -109,8 +111,12 @@ public class LoginForm {
 		frame.getContentPane().add(passwordtf);
 		
 		JButton btnLogin = new JButton("Login");
+		
+		Session ss = new Session();
+		
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				
 				String ps = new String(passwordtf.getPassword());
 				try{
@@ -121,19 +127,23 @@ public class LoginForm {
 						pre.setString(1, usernametf.getText());
 						pre.setString(2,ps);
 						
+						
 						ResultSet rs = pre.executeQuery();
+						
 						
 						if(rs.next()) {
 							//JOptionPane.showMessageDialog(null, "Correct Username/Password");
 							String sLevel = rs.getString(4);
+							//ses = Integer.parseInt(rs.getString(1));
 							if(sLevel.equals("Company")) {
-								Search window = new Search();
+								ss.setSesion(rs.getString(1));
+								AddCompany window = new AddCompany();
 								window.frame.setVisible(true);
 								frame.dispose();
 								// Menu Admin
-								
+								System.out.println(ses);
 								} else if (sLevel.equals("Appllicant")){
-									
+									ss.setSesion(rs.getString(1));
 									Home window4 = new Home();
 									window4.frame.setVisible(true);
 									frame.dispose();

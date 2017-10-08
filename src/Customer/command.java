@@ -24,8 +24,7 @@ public class command {
 
 		try {
 
-			Connection conn = DriverManager
-					.getConnection("jdbc:ucanaccess://C:\\Users\\Nong\\workspace\\Project\\AdvoopPrj\\prjoop.accdb");
+			Connection conn = DriverManager.getConnection("jdbc:ucanaccess://C:/AdvoopPrj/prjoop.accdb");
 			Statement s = conn.createStatement();
 
 			// s.executeUpdate("insert into lab6 (sakul,country,cast) values('fsf','Gafme',12345)");
@@ -33,12 +32,12 @@ public class command {
 
 			
 			if(data.equals("1")){
-				check = "SELECT * FROM com";
+				check = "SELECT * FROM com2";
 			}else if(data.equals("2")){
 				check = "SELECT * FROM cus";
 			}
 			
-			PreparedStatement pstmt = conn.prepareStatement("select * from cus where username = ? ");
+			PreparedStatement pstmt = conn.prepareStatement("select * from login where username = ? ");
 			pstmt.setString(1,name);
 			ResultSet rs1= pstmt.executeQuery();
 			if(rs1.next())
@@ -58,8 +57,7 @@ public class command {
 							+ rs.getString(2) + "\t" + rs.getString(3) + "\t"
 							+ rs.getString(4) + "\t" + rs.getString(5) + "\t"
 							+ rs.getString(6) + "\t" + rs.getString(7) + "\t"
-							+ rs.getString(8) + "\t" + rs.getString(9) + "\t"
-							+ rs.getString(10));
+							+ rs.getString(8));
 				} else if (data.equals("2")) {
 					System.out.println("\n" + rs.getString(1) + "\t"
 							+ rs.getString(2) + "\t" + rs.getString(3) + "\t"

@@ -3,18 +3,20 @@ package Employee;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+
 import java.awt.Font;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.Spring;
 import javax.swing.text.JTextComponent;
 import javax.swing.JRadioButton;
+
 import java.awt.Label;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -22,30 +24,38 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+
 import javax.swing.JScrollPane;
 import javax.swing.JFormattedTextField;
+
+import Customer.LoginForm;
+import Customer.Session;
+
 import com.toedter.calendar.JDateChooser;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JComponent;
 
 public class AddCompany {
 	
 	int i;
-	JFrame frame;
+	public JFrame frame;
 	private JTextField usernametf;
 	private JTextField textPhone;
 	private JTextField textCEO;
-	String query,sql,driver;
-	Statement stmt;
-	 ResultSet rs;
-	 Connection conn;
 	protected JTextComponent dateChooser;
 	private JTextField textAddress;
 	private JTextField textContact;
 	private JTextField idtf;
 	private JTextField emailtf;
 
+	String query,sql,driver;
+	Statement stmt;
+	 ResultSet rs;
+	 Connection conn;
 	/**
 	 * Launch the application.
 	 */
@@ -73,18 +83,41 @@ public class AddCompany {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		try {
-			String driver= "jdbc:ucanaccess://C:/Users/Nong/workspace/Project/AdvoopPrj/prjoop.accdb";
-			String user="";
-			String paw="";
-			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			
-		 conn = DriverManager.getConnection("jdbc:ucanaccess://C:/Users/Nong/workspace/Project/AdvoopPrj/prjoop.accdb");
-		// System.out.println("Connection success");
-		 query = "SELECT * FROM com";
-		  stmt = conn.createStatement();
-		 rs = stmt.executeQuery(query);
 		
+		Session ss = new Session();
+		//LoginForm lf = new LoginForm(); 
+		int comid = Integer.parseInt(ss.getSession());
+		System.out.println(comid);
+        try {
+			
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+
+			conn = DriverManager.getConnection("jdbc:ucanaccess://C:/AdvoopPrj/prjoop.accdb");
+
+			//C:\Users\numan\git\Project\AdvoopPrj\prjoop.accdb
+			
+
+			String qq = "SELECT * FROM com where comid = '"+comid+"' ";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(qq);
+			
+			while(rs.next()){
+
+				System.out.println("\n" + rs.getString(8) + "\t"
+						+ rs.getString(1) + "\t" + rs.getString(2) + "\t"
+						+ rs.getString(3) + "\t" + rs.getString(4) + "\t"
+						+ rs.getString(5) + "\t" + rs.getString(6) + "\t"
+						+ rs.getString(7));
+				
+				//String dates = new SimpleDateFormat("dd/MM/yyyy").format(rs.getString(5));
+				
+			}
+		} catch (Exception eb) {
+			System.err.println(eb);
+
+		}
+        
+
 		frame = new JFrame();
 		frame.setBounds(100, 100, 587, 554);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,10 +149,12 @@ public class AddCompany {
 			}
 		});
 		
+		
+		
 		JButton btnSave = new JButton("\u0E1A\u0E31\u0E19\u0E17\u0E36\u0E01");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(i == 1){
+				/*if(i == 1){
 					 
 					
 					sql = "insert into com (comname,address,about,phone,ceo) values('"+usernametf.getText()+"','"+textAddress.getText()+"','"+textPhone.getText()+"','"+textCEO.getText()+"','"+textContact.getText()+"')";
@@ -142,8 +177,40 @@ public class AddCompany {
 					String driver= "jdbc:ucanaccess://C:/Users/Nong/workspace/Project/AdvoopPrj/prjoop.accdb";
 					 sql = "UPDATE com SET comname = '"+usernametf.getText()+"',address='"+textAddress.getText()+"',phone='"+textPhone.getText()+"',ceo='"+textCEO.getText()+"',about='"+textContact.getText()+"'";
 					
+				}*/
+				sql = "UPDATE com SET comname = '"+usernametf.getText()+"',address='"+textAddress.getText()+"',phone='"+textPhone.getText()+"',ceo='"+textCEO.getText()+"',about='"+textContact.getText()+"',email='"+emailtf.getText()+"'";
+				
+				 
+				try {
+
+					int confirm = JOptionPane.showConfirmDialog(null,
+							"คุณต้องการแก้ไข:" + usernametf.getText()
+									+ "หรือไม่", "คำยืนยัน",
+							JOptionPane.YES_NO_OPTION);
+					if (confirm == JOptionPane.YES_OPTION) {
+						
+						Statement s = conn.createStatement();
+						
+
+						if (s.executeUpdate(sql) != 0) {
+							JOptionPane.showMessageDialog(null,
+									"แก้ไขข้อมูลเรียบร้อยแล้ว");
+							}else{
+								JOptionPane.showMessageDialog(null,
+										"ERROR");}
+
+
+					} else if (confirm == JOptionPane.NO_OPTION) {
+						return;
+					}
+
+				} catch (Exception err) {
+					err.printStackTrace();
 				}
 			}
+				
+				
+			
 		});
 		
 		JLabel Bdate = new JLabel("\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48\u0E01\u0E48\u0E2D\u0E15\u0E31\u0E49\u0E07 :");
@@ -189,6 +256,40 @@ public class AddCompany {
 		emailtf = new JTextField();
 		emailtf.setColumns(10);
 		
+	
+		
+		 try {
+				
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+
+				conn = DriverManager.getConnection("jdbc:ucanaccess://C:/AdvoopPrj/prjoop.accdb");
+
+				//C:\Users\numan\git\Project\AdvoopPrj\prjoop.accdb
+				
+
+				String qq = "SELECT * FROM com where comid = '"+comid+"'";
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(qq);
+				
+				while(rs.next()){
+					String dateValue = rs.getString(4);
+					java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(dateValue);
+					//String dates = new SimpleDateFormat("dd/MM/yyyy").format(rs.getString(5));
+					
+					idtf.setText(rs.getString(8));
+					usernametf.setText(rs.getString(1));
+					textAddress.setText(rs.getString(2));
+					textPhone.setText(rs.getString(3));
+					dateChooser.setDate(date);
+					textCEO.setText(rs.getString(5));
+					textContact.setText(rs.getString(6));
+					emailtf.setText(rs.getString(7));
+				
+				}
+			} catch (Exception eb) {
+				System.err.println(eb);
+
+			}
 		
 		
 		JLabel lblEmail = new JLabel("Email:");
@@ -284,9 +385,7 @@ public class AddCompany {
 					.addGap(76))
 		);
 		frame.getContentPane().setLayout(groupLayout);
-		}catch(Exception e){
-			  System.err.println(e);	
-			}
+	
 	}
 }
 
