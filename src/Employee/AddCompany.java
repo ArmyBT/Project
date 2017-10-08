@@ -14,7 +14,7 @@ import java.awt.Font;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-
+import java.util.Date;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -141,7 +141,7 @@ public class AddCompany {
 		});
 
 		JDateChooser dateChooser_1 = new JDateChooser();
-		dateChooser_1.setDateFormatString("dd/MM/yyyy");
+		dateChooser_1.setDateFormatString("dd-MM-yyyy");
 		dateChooser_1.setEnabled(true);
 		// String dob=""+dateChooser_1.getDate();
 
@@ -205,10 +205,10 @@ public class AddCompany {
 
 			while (rs.next()) {
 				String dateValue = rs.getString(4);
-				java.util.Date date = new SimpleDateFormat("dd-MM-yyyy")
+				Date date = new SimpleDateFormat("dd-MM-yyyy")
 						.parse(dateValue);
-				// String dates = new
-				// SimpleDateFormat("dd/MM/yyyy").format(rs.getString(5));
+				
+				//Date date = new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString(4));
 
 				idtf.setText(rs.getString(8));
 				usernametf.setText(rs.getString(1));
