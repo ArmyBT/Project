@@ -14,7 +14,7 @@ import java.awt.Font;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import javax.swing.text.JTextComponent;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,7 +36,7 @@ public class AddCompany {
 	private JTextField usernametf;
 	private JTextField textPhone;
 	private JTextField textCEO;
-	protected JTextComponent dateChooser;
+	protected JDateChooser dateChooser_1;
 	private JTextField textAddress;
 	private JTextField textContact;
 	private JTextField idtf;
@@ -242,8 +242,8 @@ public class AddCompany {
 				try {
 
 					int confirm = JOptionPane.showConfirmDialog(null,
-							"§ÿ≥µÈÕß°“√·°È‰¢:" + usernametf.getText()
-									+ "À√◊Õ‰¡Ë", "§”¬◊π¬—π",
+							"‡∏Ñ‡∏∏‡∏ì‡∏ï‡πâ‡∏≠‡∏á‡∏Å‡∏≤‡∏£‡πÅ‡∏Å‡πâ‡πÑ‡∏Ç:" + usernametf.getText()
+									+ "‡πÉ‡∏ä‡πâ", "‡πÑ‡∏°‡πà",
 							JOptionPane.YES_NO_OPTION);
 					if (confirm == JOptionPane.YES_OPTION) {
 
@@ -251,7 +251,7 @@ public class AddCompany {
 
 						if (s.executeUpdate(sql) != 0) {
 							JOptionPane.showMessageDialog(null,
-									"·°È‰¢¢ÈÕ¡Ÿ≈‡√’¬∫√ÈÕ¬·≈È«");
+									"‡∏ö‡∏±‡∏ô‡∏ó‡∏∂‡∏Å‡πÄ‡∏£‡∏µ‡∏¢‡∏ö‡∏£‡πâ‡∏≠‡∏¢");
 						} else {
 							JOptionPane.showMessageDialog(null, "ERROR");
 						}
