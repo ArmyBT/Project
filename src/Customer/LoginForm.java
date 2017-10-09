@@ -144,7 +144,7 @@ public class LoginForm {
 								System.out.println(ses);
 								} else if (sLevel.equals("Appllicant")){
 									ss.setSesion(rs.getString(1));
-									Home window4 = new Home();
+									AddCustomer window4 = new AddCustomer();
 									window4.frame.setVisible(true);
 									frame.dispose();
 								}
