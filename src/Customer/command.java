@@ -32,7 +32,7 @@ public class command {
 
 			
 			if(data.equals("1")){
-				check = "SELECT * FROM com2";
+				check = "SELECT * FROM com";
 			}else if(data.equals("2")){
 				check = "SELECT * FROM cus";
 			}

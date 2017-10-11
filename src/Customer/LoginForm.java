@@ -13,7 +13,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
 import Employee.AddCompany;
-import Employee.Search;
+import Employee.HomeCompany;
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -25,7 +26,7 @@ import java.sql.Statement;
 
 public class LoginForm {
 
-	JFrame frame;
+	public JFrame frame;
 	private JTextField usernametf;
 	private JPasswordField passwordtf;
 	String query, sql, driver;
@@ -137,7 +138,7 @@ public class LoginForm {
 							//ses = Integer.parseInt(rs.getString(1));
 							if(sLevel.equals("Company")) {
 								ss.setSesion(rs.getString(1));
-								AddCompany window = new AddCompany();
+								HomeCompany window = new HomeCompany();
 								window.frame.setVisible(true);
 								frame.dispose();
 								// Menu Admin

@@ -9,8 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.table.DefaultTableModel;
+
 
 
 
@@ -60,16 +59,20 @@ public class Home {
 		JButton profilebtn = new JButton("Profile");
 		
 		JButton btnLogout = new JButton("Logout");
+	
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-			}
-		));
+		
+		// Model for Table
+			
 		
 		JButton button = new JButton("\u0E2D\u0E48\u0E32\u0E19");
+		
+		table = new JTable();
+		
+		
+		
+		
+		
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -86,13 +89,13 @@ public class Home {
 					.addComponent(btnLogout)
 					.addContainerGap(7, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(7)
-					.addComponent(table, GroupLayout.PREFERRED_SIZE, 420, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(318, Short.MAX_VALUE)
 					.addComponent(button, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(18)
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, 395, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(21, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -112,13 +115,12 @@ public class Home {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(11)
 							.addComponent(btnLogout)))
-					.addGap(4)
-					.addComponent(table, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(32)
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+					.addGap(26)
 					.addComponent(button, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 		);
 		frame.getContentPane().setLayout(groupLayout);
 	}
-
 }

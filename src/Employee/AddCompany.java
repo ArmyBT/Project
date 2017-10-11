@@ -132,11 +132,16 @@ public class AddCompany {
 
 			public void actionPerformed(ActionEvent arg0) {
 
-				usernametf.setText("");
+			/*	usernametf.setText("");
 				textAddress.setText("");
 				textPhone.setText("");
 				textCEO.setText("");
-				textContact.setText("");
+				textContact.setText("");*/
+				
+				HomeCompany hc = new HomeCompany();
+				hc.frame.setVisible(true);
+				frame.dispose();
+				
 			}
 		});
 
