@@ -199,7 +199,12 @@ public class Testjtable  extends JFrame {
 				System.out.println(value);
 				System.out.println(value1);
 				
+				   ApplyingSession as = new ApplyingSession();
+				   as.setCol1(value);
+				   as.setCol2(value1);
 				   
+				   ApplyingForm af = new ApplyingForm();
+				   af.frame.setVisible(true);
 				
 				
 			}
