@@ -26,6 +26,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
+import Employee.JTable_Search;
+
 import com.toedter.calendar.JDateChooser;
 
 public class AddCustomer {
@@ -52,6 +54,24 @@ public class AddCustomer {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				
+				try {
+			         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+			             if ("Nimbus".equals(info.getName())) {
+			                 javax.swing.UIManager.setLookAndFeel(info.getClassName());
+			                 break;
+			             }
+			         }
+			     } catch (ClassNotFoundException ex) {
+			         java.util.logging.Logger.getLogger(AddCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			     } catch (InstantiationException ex) {
+			         java.util.logging.Logger.getLogger(AddCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			     } catch (IllegalAccessException ex) {
+			         java.util.logging.Logger.getLogger(AddCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+			         java.util.logging.Logger.getLogger(AddCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			     }
+				
 				try {
 					AddCustomer window = new AddCustomer();
 					window.frame.setVisible(true);
@@ -347,6 +367,8 @@ public class AddCustomer {
 				edutf.setEditable(false);// 1
 				sakhatf.setEditable(false);// 1
 				editbtn.setEnabled(true);
+				
+				
 
 			}
 		});
@@ -390,6 +412,18 @@ public class AddCustomer {
 				} catch (Exception err) {
 					err.printStackTrace();
 				}
+				
+				savebtn.setEnabled(false);
+				nametf.setEditable(false);// 1
+				gratf.setEditable(false);// 1
+				phonetf.setEditable(false);// 1
+				talenttf.setEditable(false);
+				aboutmetf.setEditable(false);// 1
+				emailtf.setEditable(false);// 1
+				adressEP.setEditable(false);// 1
+				edutf.setEditable(false);// 1
+				sakhatf.setEditable(false);// 1
+				editbtn.setEnabled(true);
 
 			}
 		});

@@ -15,7 +15,6 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.util.Date;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -53,6 +52,24 @@ public class AddCompany {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				
+				 try {
+			         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+			             if ("Nimbus".equals(info.getName())) {
+			                 javax.swing.UIManager.setLookAndFeel(info.getClassName());
+			                 break;
+			             }
+			         }
+			     } catch (ClassNotFoundException ex) {
+			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			     } catch (InstantiationException ex) {
+			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			     } catch (IllegalAccessException ex) {
+			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			     }
+				
 				try {
 					AddCompany window = new AddCompany();
 					window.frame.setVisible(true);
@@ -138,8 +155,8 @@ public class AddCompany {
 				textCEO.setText("");
 				textContact.setText("");*/
 				
-				HomeCompany hc = new HomeCompany();
-				hc.frame.setVisible(true);
+				/*JTable_Search window = new JTable_Search();
+				window.setVisible(true);*/
 				frame.dispose();
 				
 			}

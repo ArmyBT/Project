@@ -21,6 +21,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
+import Employee.JTable_Search;
+
 public class Testjtable  extends JFrame {
 	
 	Connection connect = null;
@@ -32,6 +38,24 @@ public class Testjtable  extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				
+				try {
+			         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+			             if ("Nimbus".equals(info.getName())) {
+			                 javax.swing.UIManager.setLookAndFeel(info.getClassName());
+			                 break;
+			             }
+			         }
+			     } catch (ClassNotFoundException ex) {
+			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			     } catch (InstantiationException ex) {
+			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			     } catch (IllegalAccessException ex) {
+			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			     }
+				
 				Testjtable frame = new Testjtable();
 				frame.setVisible(true);
 			}

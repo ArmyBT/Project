@@ -8,9 +8,25 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.JFrame;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
+
+import java.awt.Font;
+
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JSeparator;
+
+import Customer.LoginForm;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
 *
@@ -23,6 +39,62 @@ public class JTable_Search extends javax.swing.JFrame {
   */
  public JTable_Search() {
  	setAutoRequestFocus(false);
+ 	
+ 	JMenuBar menuBar = new JMenuBar();
+ 	setJMenuBar(menuBar);
+ 	
+ 	JMenu mnMenu = new JMenu("Menu");
+ 	mnMenu.setFont(new Font("Segoe UI", Font.BOLD, 15));
+ 	menuBar.add(mnMenu);
+ 	
+ 	JMenuItem menuItem = new JMenuItem("\u0E1B\u0E23\u0E30\u0E01\u0E32\u0E28\u0E2A\u0E21\u0E31\u0E04\u0E23\u0E07\u0E32\u0E19");
+ 	menuItem.addActionListener(new ActionListener() {
+ 		public void actionPerformed(ActionEvent arg0) {
+ 			Announcejob ann = new Announcejob();
+			ann.frame.setVisible(true);
+			
+ 			
+ 		}
+ 	});
+ 	mnMenu.add(menuItem);
+ 	
+ 	JSeparator separator = new JSeparator();
+ 	mnMenu.add(separator);
+ 	
+ 	JMenuItem mntmProfile = new JMenuItem("Profile");
+ 	mntmProfile.addActionListener(new ActionListener() {
+ 		public void actionPerformed(ActionEvent e) {
+ 			AddCompany window = new AddCompany();
+			window.frame.setVisible(true);
+ 			
+ 		}
+ 	});
+ 	mnMenu.add(mntmProfile);
+ 	
+ 	JSeparator separator_1 = new JSeparator();
+ 	mnMenu.add(separator_1);
+ 	
+ 	
+ 	JMenuItem mntmLogout = new JMenuItem("Logout");
+ 	mntmLogout.addActionListener(new ActionListener() {
+ 		public void actionPerformed(ActionEvent e) {
+ 			
+ 			
+ 			LoginForm lf = new  LoginForm();
+			lf.frame.setVisible(true);
+			 new JTable_Search().setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+ 		}
+ 	});
+ 	mnMenu.add(mntmLogout);
+ 	
+ 	JMenuItem mntmExits = new JMenuItem("Exits");
+ 	mntmExits.addActionListener(new ActionListener() {
+ 		public void actionPerformed(ActionEvent e) {
+ 			
+ 			System.exit(0);
+ 		}
+ 	});
+ 	mnMenu.add(mntmExits);
      initComponents();
      
      // call findUsers function
@@ -152,30 +224,37 @@ public class JTable_Search extends javax.swing.JFrame {
          }
      ));
      jScrollPane1.setViewportView(jTable_Users);
+     
+     lblHomeCompany = new JLabel("Home Company");
+     lblHomeCompany.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
 
      javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
      jPanel2Layout.setHorizontalGroup(
      	jPanel2Layout.createParallelGroup(Alignment.LEADING)
-     		.addGroup(jPanel2Layout.createSequentialGroup()
-     			.addContainerGap()
-     			.addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING)
-     				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 1192, GroupLayout.PREFERRED_SIZE)
+     		.addGroup(Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+     			.addContainerGap(44, Short.MAX_VALUE)
+     			.addGroup(jPanel2Layout.createParallelGroup(Alignment.TRAILING, false)
+     				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 1266, GroupLayout.PREFERRED_SIZE)
      				.addGroup(jPanel2Layout.createSequentialGroup()
+     					.addComponent(lblHomeCompany, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
+     					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
      					.addComponent(jText_Search, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
-     					.addGap(18)
+     					.addPreferredGap(ComponentPlacement.RELATED)
      					.addComponent(jButton_Search)))
-     			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+     			.addGap(44))
      );
      jPanel2Layout.setVerticalGroup(
      	jPanel2Layout.createParallelGroup(Alignment.LEADING)
      		.addGroup(jPanel2Layout.createSequentialGroup()
-     			.addGap(31)
-     			.addGroup(jPanel2Layout.createParallelGroup(Alignment.BASELINE)
-     				.addComponent(jButton_Search)
-     				.addComponent(jText_Search, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-     			.addGap(28)
+     			.addContainerGap()
+     			.addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING)
+     				.addGroup(jPanel2Layout.createParallelGroup(Alignment.BASELINE)
+     					.addComponent(jText_Search, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+     					.addComponent(jButton_Search, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
+     				.addComponent(lblHomeCompany))
+     			.addGap(18)
      			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-     			.addContainerGap(41, Short.MAX_VALUE))
+     			.addContainerGap(73, Short.MAX_VALUE))
      );
      jPanel2.setLayout(jPanel2Layout);
 
@@ -232,6 +311,8 @@ public class JTable_Search extends javax.swing.JFrame {
      java.awt.EventQueue.invokeLater(new Runnable() {
          public void run() {
              new JTable_Search().setVisible(true);
+             
+          
          }
      });
  }
@@ -242,5 +323,8 @@ public class JTable_Search extends javax.swing.JFrame {
  private javax.swing.JScrollPane jScrollPane1;
  private javax.swing.JTable jTable_Users;
  private javax.swing.JTextField jText_Search;
- // End of variables declaration                   
+ private JLabel lblHomeCompany;
+ public JFrame frame;
+  
+ 
 }
