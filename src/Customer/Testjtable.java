@@ -155,10 +155,13 @@ public class Testjtable  extends JFrame {
 		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int column = 0;
+				int column1 = 0;
+				int column2 = 1;
 				int row = table.getSelectedRow();
-				String value = table.getModel().getValueAt(row, column).toString();
+				String value = table.getModel().getValueAt(row, column1).toString();
+				String value1 = table.getModel().getValueAt(row, column2).toString();
 				System.out.println(value);
+				System.out.println(value1);
 				
 				   
 				lblCustomer.setText("1");
