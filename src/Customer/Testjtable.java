@@ -31,6 +31,7 @@ public class Testjtable  extends JFrame {
 	
 	Connection connect = null;
 	Statement s = null;
+	public JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -55,9 +56,12 @@ public class Testjtable  extends JFrame {
 			     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
 			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 			     }
-				
+				try {
 				Testjtable frame = new Testjtable();
 				frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
