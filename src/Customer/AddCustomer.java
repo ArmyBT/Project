@@ -213,6 +213,8 @@ public class AddCustomer {
 		JButton canclebtn = new JButton("\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01");
 		canclebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				frame.dispose();
 			}
 		});
 		canclebtn.setBounds(500, 121, 89, 23);

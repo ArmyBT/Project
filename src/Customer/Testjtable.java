@@ -26,6 +26,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import Employee.JTable_Search;
+import java.awt.Font;
+import javax.swing.JSeparator;
 
 public class Testjtable  extends JFrame {
 	
@@ -71,42 +73,48 @@ public class Testjtable  extends JFrame {
 	 */
 	public Testjtable() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 579, 368);
-		setTitle("ThaiCreate.Com Java GUI Tutorial");
+		setBounds(100, 100, 991, 368);
+		setTitle("Home");
 		getContentPane().setLayout(null);
 		
 		// Customer Label
-		JLabel lblCustomer = new JLabel("Customer List");
-		lblCustomer.setBounds(231, 28, 95, 14);
+		JLabel lblCustomer = new JLabel("\u0E07\u0E32\u0E19\u0E17\u0E35\u0E48\u0E01\u0E33\u0E25\u0E31\u0E07\u0E40\u0E1B\u0E34\u0E14\u0E23\u0E31\u0E1A\u0E2A\u0E21\u0E31\u0E04\u0E23");
+		lblCustomer.setFont(new Font("Tahoma", Font.BOLD, 25));
+		lblCustomer.setBounds(72, 25, 270, 31);
 		getContentPane().add(lblCustomer);
 		
 		// ScrollPane for Table
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(33, 61, 494, 188);
+		scrollPane.setBounds(72, 63, 836, 188);
 		getContentPane().add(scrollPane);
+		
 		
 		// Table
 		JTable table = new JTable();
 				
 		// Model for Table
 		DefaultTableModel model = (DefaultTableModel)table.getModel();
-		model.addColumn("CustomerID");
-		model.addColumn("Name");
-		model.addColumn("Email");
-		model.addColumn("CountryCode");
-		model.addColumn("Budget");
-		model.addColumn("Used");
+		model.addColumn("รหัสใบสมัคร");
+		model.addColumn("หมายเลขบริษัท");
+		model.addColumn("บริษัท");
+		model.addColumn("วันที่รับสมัคร");
+		model.addColumn("งาน");
+		model.addColumn("จำนวนที่รับ(คน)");
 		
 		Scanner input = new Scanner(System.in);
 
-		System.out
+	/*	System.out
 				.println("enter data base want see 1=com 2=cus 3=applying 4=offer: ");
 		String data = input.nextLine();
 		System.out.println("Check username: ");
 		String name = input.nextLine();
 		
-		String check = "";
-		String test = "";
+		String check = "SELECT announce.anid,com.comname,announce.adate,announce.aboutjob,announce.amount FROM announce INNER JOIN com ON announce.comid = com.comid;  ";
+
+		String test = "";*/
+		
+		String check = "SELECT announce.anid,com.comid,com.comname,announce.adate,announce.aboutjob,announce.amount FROM announce INNER JOIN com ON announce.comid = com.comid;  ";
+
 		
 		try {
 
@@ -117,15 +125,15 @@ public class Testjtable  extends JFrame {
 			// s.executeUpdate("insert into lab6 (sakul,country,cast) values('rwfe','32212',3223)");
 
 			
-			if(data.equals("1")){
+		/*	if(data.equals("1")){
 				check = "SELECT announce.anid,com.comname,announce.adate,announce.aboutjob,announce.amount FROM announce INNER JOIN com ON announce.comid = com.comid;  ";
 			}else if(data.equals("2")){
 				check = "SELECT * FROM com";
-			}
+			}*/
 			
-			PreparedStatement pstmt = conn.prepareStatement("select * from login where username = ? ");
+			/*PreparedStatement pstmt = conn.prepareStatement("select * from login where username = ? ");
 			pstmt.setString(1,name);
-			ResultSet rs1= pstmt.executeQuery();
+			ResultSet rs1= pstmt.executeQuery();*/
 			int row = 0;
 			
 			ResultSet rs = s.executeQuery(check);
@@ -138,7 +146,7 @@ public class Testjtable  extends JFrame {
 				model.setValueAt(rs.getString(3), row, 2);
 				model.setValueAt(rs.getString(4), row, 3);
 				model.setValueAt(rs.getString(5), row, 4);
-				//model.setValueAt(rs.getString(6), row, 5);
+				model.setValueAt(rs.getString(6), row, 5);
 				row++;
 				
 				/*
@@ -151,7 +159,7 @@ public class Testjtable  extends JFrame {
 						});
 				 */
             }
-			rs1.close();
+			//rs1.close();
              
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -179,7 +187,7 @@ public class Testjtable  extends JFrame {
 
 		scrollPane.setViewportView(table);		
 		
-		JButton btnSelect = new JButton("Select");
+		JButton btnSelect = new JButton("\u0E2A\u0E21\u0E31\u0E04\u0E23");
 		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -192,12 +200,61 @@ public class Testjtable  extends JFrame {
 				System.out.println(value1);
 				
 				   
-				lblCustomer.setText("1");
+				
 				
 			}
 		});
-		btnSelect.setBounds(421, 272, 89, 23);
+		btnSelect.setBounds(819, 262, 89, 23);
 		getContentPane().add(btnSelect);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnMenu = new JMenu("Menu");
+		mnMenu.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		menuBar.add(mnMenu);
+		
+		JMenuItem mntmProfile = new JMenuItem("Profile");
+		mntmProfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AddCustomer ac = new AddCustomer();
+				ac.frame.setVisible(true);
+				
+			}
+		});
+		mnMenu.add(mntmProfile);
+		
+		JSeparator separator = new JSeparator();
+		mnMenu.add(separator);
+		
+		JMenuItem menuItem = new JMenuItem("\u0E1C\u0E25\u0E01\u0E32\u0E23\u0E2A\u0E21\u0E31\u0E04\u0E23\u0E07\u0E32\u0E19");
+		mnMenu.add(menuItem);
+		
+		JSeparator separator_1 = new JSeparator();
+		mnMenu.add(separator_1);
+		
+		JMenuItem menuItem_1 = new JMenuItem("\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E23\u0E30\u0E1A\u0E1A");
+		menuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Testjtable frame = new Testjtable();
+				frame.setVisible(false);
+				
+				LoginForm lf = new LoginForm();
+				lf.frame.setVisible(true);
+			}
+		});
+		mnMenu.add(menuItem_1);
+		
+		JMenuItem mntmExits = new JMenuItem("Exits");
+		mntmExits.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				System.exit(0);
+			}
+		});
+		mnMenu.add(mntmExits);
 
 	}
 }
