@@ -3,6 +3,7 @@ package Customer;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -156,10 +157,80 @@ public class OfferJob {
 		frame.getContentPane().add(button_1);
 		
 		JButton button_2 = new JButton("\u0E23\u0E31\u0E1A\u0E02\u0E49\u0E2D\u0E40\u0E2A\u0E19\u0E2D");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int column1 = 1;
+				int row = table.getSelectedRow();
+				String value = table.getModel().getValueAt(row, column1).toString();
+				
+				sql = "UPDATE offer SET status = 'รับข้อเสนอแล้ว'";
+
+				try {
+
+					int confirm = JOptionPane.showConfirmDialog(null,
+							"คุณต้องการรัข้อเสนอนี้:" + value + "ใช้",
+							"ไม่", JOptionPane.YES_NO_OPTION);
+					if (confirm == JOptionPane.YES_OPTION) {
+
+						Statement s = conn.createStatement();
+						//stmt = conn.createStatement();
+
+						if (s.executeUpdate(sql) != 0) {
+							JOptionPane.showMessageDialog(null,
+									"บันทึกเรียบร้อย");
+						} else {
+							JOptionPane.showMessageDialog(null, "ERROR");
+						}
+
+					} else if (confirm == JOptionPane.NO_OPTION) {
+						return;
+					}
+
+				} catch (Exception err) {
+					err.printStackTrace();
+				}
+			}
+		});
 		button_2.setBounds(528, 37, 115, 23);
 		frame.getContentPane().add(button_2);
 		
 		JButton button_3 = new JButton("\u0E44\u0E21\u0E48\u0E23\u0E31\u0E1A\u0E02\u0E2D\u0E40\u0E2A\u0E19\u0E2D");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int column1 = 1;
+				int row = table.getSelectedRow();
+				String value = table.getModel().getValueAt(row, column1).toString();
+				
+				sql = "UPDATE offer SET status = 'ไม่รับข้อเสนอ'";
+
+				try {
+
+					int confirm = JOptionPane.showConfirmDialog(null,
+							"คุณไม่ต้องการรัข้อเสนอนี้:" + value + "ใช้",
+							"ไม่", JOptionPane.YES_NO_OPTION);
+					if (confirm == JOptionPane.YES_OPTION) {
+
+						Statement s = conn.createStatement();
+
+						if (s.executeUpdate(sql) != 0) {
+							JOptionPane.showMessageDialog(null,
+									"บันทึกเรียบร้อย");
+						} else {
+							JOptionPane.showMessageDialog(null, "ERROR");
+						}
+
+					} else if (confirm == JOptionPane.NO_OPTION) {
+						return;
+					}
+
+				} catch (Exception err) {
+					err.printStackTrace();
+				}
+				
+			}
+		});
 		button_3.setBounds(652, 37, 100, 23);
 		frame.getContentPane().add(button_3);
 	}
