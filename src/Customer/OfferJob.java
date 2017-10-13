@@ -158,10 +158,13 @@ public class OfferJob {
 			public void actionPerformed(ActionEvent e) {
 				
 				int column1 = 1;
+				int column = 0;
 				int row = table.getSelectedRow();
 				String value = table.getModel().getValueAt(row, column1).toString();
+				String value1 = table.getModel().getValueAt(row, column).toString();
+				int off = Integer.parseInt(value1);
 				
-				sql = "UPDATE offer SET status = 'รับข้อเสนอแล้ว'";
+				sql = "UPDATE offer SET status = 'รับข้อเสนอแล้ว'WHERE offid = '"+off+"'; ";
 
 				try {
 
@@ -200,10 +203,13 @@ public class OfferJob {
 			public void actionPerformed(ActionEvent e) {
 				
 				int column1 = 1;
+				int column = 0;
 				int row = table.getSelectedRow();
 				String value = table.getModel().getValueAt(row, column1).toString();
+				String value1 = table.getModel().getValueAt(row, column).toString();
+				int off = Integer.parseInt(value1);
 				
-				sql = "UPDATE offer SET status = 'ไม่รับข้อเสนอ'";
+				sql = "UPDATE offer SET status = 'ไม่รับข้อเสนอ'WHERE offid = '"+off+"'; ";
 
 				try {
 
@@ -235,6 +241,9 @@ public class OfferJob {
 			}
 		});
 		button_3.setBounds(652, 37, 100, 23);
+		
+		
+		
 		frame.getContentPane().add(button_3);
 	}
 
