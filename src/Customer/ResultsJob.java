@@ -3,6 +3,7 @@ package Customer;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -16,6 +17,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ResultsJob {
 
@@ -123,5 +129,71 @@ public class ResultsJob {
 		label.setFont(new Font("Tahoma", Font.BOLD, 25));
 		label.setBounds(44, 11, 203, 31);
 		frame.getContentPane().add(label);
+		
+		JButton button = new JButton("ลบใบสมัคร");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int column1 = 0;
+				int row = table.getSelectedRow();
+				String value = table.getModel().getValueAt(row, column1).toString();
+				int del = Integer.parseInt(value);
+				System.out.println(del);
+				
+				sql = "delete from  applying where appid  = '"
+						+ del + "'";
+				try {
+
+
+					int confirm = JOptionPane.showConfirmDialog(null,
+							"คุณต้องการลบ:" + value + "หรือไม่",
+							"คำยืนยัน", JOptionPane.YES_NO_OPTION);
+					if (confirm == JOptionPane.YES_OPTION) {
+
+						stmt = conn.createStatement();
+						stmt.executeUpdate(sql);
+
+						JOptionPane
+								.showMessageDialog(null, "ลบข้อมูลเรียบร้อย");
+						
+						int row1 = 0;
+						while ((rs != null) && (rs.next())) {
+							model.addRow(new Object[0]);
+							model.setValueAt(rs.getString(1), row1, 0);
+							model.setValueAt(rs.getString(2), row1, 1);
+							model.setValueAt(rs.getString(3), row1, 2);
+							model.setValueAt(rs.getString(4), row1, 3);
+			                model.setValueAt(rs.getString(5), row1, 4);
+							 // model.setValueAt(rs.getString(6), row, 5);
+							 
+
+			                row1++;
+
+						}
+
+
+					} else if (confirm == JOptionPane.NO_OPTION) {
+						return;
+					}
+
+				} catch (Exception err) {
+					err.printStackTrace();
+				}
+
+				
+			}
+		});
+		button.setBounds(43, 249, 89, 23);
+		frame.getContentPane().add(button);
+		
+		JButton button_1 = new JButton("ปิดหน้าต่างนี้");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				frame.dispose();
+			}
+		});
+		button_1.setBounds(655, 254, 104, 23);
+		frame.getContentPane().add(button_1);
 	}
 }
