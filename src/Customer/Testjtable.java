@@ -244,6 +244,14 @@ public class Testjtable  extends JFrame {
 		mnMenu.add(menuItem);
 		
 		JMenuItem menuItem_2 = new JMenuItem("\u0E02\u0E49\u0E2D\u0E40\u0E2A\u0E19\u0E2D\u0E07\u0E32\u0E19");
+		menuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			 OfferJob oj= new OfferJob();
+			 oj.frame.setVisible(true);
+			 
+			}
+		});
 		mnMenu.add(menuItem_2);
 		
 		JSeparator separator_1 = new JSeparator();
