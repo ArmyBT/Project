@@ -72,10 +72,18 @@ public class JTable_Search extends javax.swing.JFrame {
  	mnMenu.add(menuItem);
  	
  	JMenuItem menuItem_1 = new JMenuItem("\u0E1C\u0E39\u0E49\u0E17\u0E35\u0E48\u0E2A\u0E21\u0E31\u0E04\u0E23\u0E07\u0E32\u0E19");
+ 	menuItem_1.addActionListener(new ActionListener() {
+ 		public void actionPerformed(ActionEvent e) {
+ 			OfferingForm window = new OfferingForm();
+ 			window.frame.setVisible(true);
+ 			frame.dispose();
+ 		}
+ 	});
  	mnMenu.add(menuItem_1);
  	
  	JSeparator separator_1 = new JSeparator();
  	mnMenu.add(separator_1);
+
  	
  	
  	JMenuItem mntmLogout = new JMenuItem("Logout");
