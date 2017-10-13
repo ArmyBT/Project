@@ -169,7 +169,7 @@ public class OfferJob {
 				try {
 
 					int confirm = JOptionPane.showConfirmDialog(null,
-							"คุณต้องการรัข้อเสนอนี้:" + value + "ใช้",
+							"คุณต้องการรับข้อเสนอนี้:" + value + "ใช้",
 							"ไม่", JOptionPane.YES_NO_OPTION);
 					if (confirm == JOptionPane.YES_OPTION) {
 
