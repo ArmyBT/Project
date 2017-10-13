@@ -95,10 +95,7 @@ public class OfferJob {
 			PreparedStatement pre;
 			pre = conn.prepareStatement(query);
 			ResultSet rs = pre.executeQuery();
-			/*
-			 * stmt = conn.createStatement(); rs = stmt.executeQuery(query);
-			 */
-			// table.setModel(DbUtils.resultSetToTableModel(rs));
+
 			int row = 0;
 			while ((rs != null) && (rs.next())) {
 				model.addRow(new Object[0]);
@@ -179,6 +176,9 @@ public class OfferJob {
 						if (s.executeUpdate(sql) != 0) {
 							JOptionPane.showMessageDialog(null,
 									"บันทึกเรียบร้อย");
+							
+							model.setValueAt("รับข้อเสนอแล้ว", row, 4);
+							
 						} else {
 							JOptionPane.showMessageDialog(null, "ERROR");
 						}
@@ -217,6 +217,9 @@ public class OfferJob {
 						if (s.executeUpdate(sql) != 0) {
 							JOptionPane.showMessageDialog(null,
 									"บันทึกเรียบร้อย");
+							
+							model.setValueAt("ไม่รับข้อเสนอ", row, 4);
+							
 						} else {
 							JOptionPane.showMessageDialog(null, "ERROR");
 						}
