@@ -101,7 +101,7 @@ public class Testjtable  extends JFrame {
 		model.addColumn("งาน");
 		model.addColumn("จำนวนที่รับ(คน)");
 		
-		Scanner input = new Scanner(System.in);
+		//Scanner input = new Scanner(System.in);
 
 	/*	System.out
 				.println("enter data base want see 1=com 2=cus 3=applying 4=offer: ");
@@ -234,6 +234,13 @@ public class Testjtable  extends JFrame {
 		mnMenu.add(separator);
 		
 		JMenuItem menuItem = new JMenuItem("\u0E1C\u0E25\u0E01\u0E32\u0E23\u0E2A\u0E21\u0E31\u0E04\u0E23\u0E07\u0E32\u0E19");
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				ResultsJob rj = new ResultsJob();
+				rj.frame.setVisible(true);
+			}
+		});
 		mnMenu.add(menuItem);
 		
 		JMenuItem menuItem_2 = new JMenuItem("\u0E02\u0E49\u0E2D\u0E40\u0E2A\u0E19\u0E2D\u0E07\u0E32\u0E19");
