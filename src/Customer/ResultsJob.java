@@ -71,12 +71,13 @@ public class ResultsJob {
 		scrollPane.setViewportView(table);
 
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		model.addColumn("�����Ѥ�");
-		model.addColumn("����ѷ");
-		model.addColumn("�ҹ�����Ѥ�");
-		model.addColumn("��");
+		model.addColumn("รหัสใบสมัคร");
+		model.addColumn("ชื่อผู้สมัคร");
+		model.addColumn("บริษัท");
+		model.addColumn("ตำแหน่ง");
+		model.addColumn("สถานะ");
 		/*
-		 * model.addColumn("�ҹ"); model.addColumn("�ӹǹ����Ѻ(��)");
+		 * model.addColumn("§Ò¹"); model.addColumn("¨Ó¹Ç¹·ÕèÃÑº(¤¹)");
 		 */
 
 		try {
@@ -88,13 +89,14 @@ public class ResultsJob {
 
 			// C:\Users\numan\git\Project\AdvoopPrj\prjoop.accdb
 
-			query = "SELECT cus.cusname,com.comname,announce.aboutjob,applying.status FROM ((applying inner join com on applying.comid=com.comid)inner join cus on applying.cusid=cusid)inner join announce on applying.anid=announce.anid where cus.cusid = '"
+			query = "SELECT applying.appid,cus.cusname,com.comname,announce.aboutjob,applying.status FROM ((applying inner join com on applying.comid=com.comid)inner join cus on applying.cusid=cus.cusid)inner join announce on applying.anid=announce.anid where cus.cusid = '"
 					+ cusid + "'";
 			PreparedStatement pre;
 			pre = conn.prepareStatement(query);
 			ResultSet rs = pre.executeQuery();
-			/*stmt = conn.createStatement();
-			rs = stmt.executeQuery(query);*/
+			/*
+			 * stmt = conn.createStatement(); rs = stmt.executeQuery(query);
+			 */
 			// table.setModel(DbUtils.resultSetToTableModel(rs));
 			int row = 0;
 			while ((rs != null) && (rs.next())) {
@@ -103,10 +105,10 @@ public class ResultsJob {
 				model.setValueAt(rs.getString(2), row, 1);
 				model.setValueAt(rs.getString(3), row, 2);
 				model.setValueAt(rs.getString(4), row, 3);
-				
-				 /* model.setValueAt(rs.getString(5), row, 4);
-				  model.setValueAt(rs.getString(6), row, 5);*/
+                model.setValueAt(rs.getString(5), row, 4);
+				 // model.setValueAt(rs.getString(6), row, 5);
 				 
+
 				row++;
 
 			}
