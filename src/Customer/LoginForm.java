@@ -114,21 +114,21 @@ public class LoginForm {
 		
 		JLabel lblUsername = new JLabel("Username:");
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
-		lblUsername.setBounds(58, 88, 118, 32);
+		lblUsername.setBounds(58, 94, 118, 32);
 		frame.getContentPane().add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Password:");
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
-		lblPassword.setBounds(58, 131, 118, 32);
+		lblPassword.setBounds(58, 137, 118, 32);
 		frame.getContentPane().add(lblPassword);
 		
 		usernametf = new JTextField();
-		usernametf.setBounds(186, 98, 214, 20);
+		usernametf.setBounds(186, 98, 214, 28);
 		frame.getContentPane().add(usernametf);
 		usernametf.setColumns(10);
 		
 		passwordtf = new JPasswordField();
-		passwordtf.setBounds(186, 141, 214, 20);
+		passwordtf.setBounds(186, 141, 214, 28);
 		frame.getContentPane().add(passwordtf);
 		
 		JButton btnLogin = new JButton("Login");
