@@ -56,10 +56,6 @@ public class JTable_Search extends javax.swing.JFrame {
  			
  		}
  	});
- 	mnMenu.add(menuItem);
- 	
- 	JSeparator separator = new JSeparator();
- 	mnMenu.add(separator);
  	
  	JMenuItem mntmProfile = new JMenuItem("Profile");
  	mntmProfile.addActionListener(new ActionListener() {
@@ -70,6 +66,13 @@ public class JTable_Search extends javax.swing.JFrame {
  		}
  	});
  	mnMenu.add(mntmProfile);
+ 	
+ 	JSeparator separator = new JSeparator();
+ 	mnMenu.add(separator);
+ 	mnMenu.add(menuItem);
+ 	
+ 	JMenuItem menuItem_1 = new JMenuItem("\u0E1C\u0E39\u0E49\u0E17\u0E35\u0E48\u0E2A\u0E21\u0E31\u0E04\u0E23\u0E07\u0E32\u0E19");
+ 	mnMenu.add(menuItem_1);
  	
  	JSeparator separator_1 = new JSeparator();
  	mnMenu.add(separator_1);
@@ -85,6 +88,12 @@ public class JTable_Search extends javax.swing.JFrame {
 			 new JTable_Search().setDefaultCloseOperation(DISPOSE_ON_CLOSE);
  		}
  	});
+ 	
+ 	JMenuItem menuItem_2 = new JMenuItem("\u0E1C\u0E25\u0E01\u0E32\u0E23\u0E40\u0E2A\u0E19\u0E2D\u0E07\u0E32\u0E19");
+ 	mnMenu.add(menuItem_2);
+ 	
+ 	JSeparator separator_2 = new JSeparator();
+ 	mnMenu.add(separator_2);
  	mnMenu.add(mntmLogout);
  	
  	JMenuItem mntmExits = new JMenuItem("Exits");
@@ -325,6 +334,4 @@ public class JTable_Search extends javax.swing.JFrame {
  private javax.swing.JTextField jText_Search;
  private JLabel lblHomeCompany;
  public JFrame frame;
-  
- 
 }

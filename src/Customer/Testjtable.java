@@ -236,6 +236,9 @@ public class Testjtable  extends JFrame {
 		JMenuItem menuItem = new JMenuItem("\u0E1C\u0E25\u0E01\u0E32\u0E23\u0E2A\u0E21\u0E31\u0E04\u0E23\u0E07\u0E32\u0E19");
 		mnMenu.add(menuItem);
 		
+		JMenuItem menuItem_2 = new JMenuItem("\u0E02\u0E49\u0E2D\u0E40\u0E2A\u0E19\u0E2D\u0E07\u0E32\u0E19");
+		mnMenu.add(menuItem_2);
+		
 		JSeparator separator_1 = new JSeparator();
 		mnMenu.add(separator_1);
 		
