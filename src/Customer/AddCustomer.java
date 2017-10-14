@@ -132,7 +132,7 @@ public class AddCustomer {
 		}
 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 615, 472);
+		frame.setBounds(100, 100, 615, 542);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		/*
@@ -161,45 +161,45 @@ public class AddCustomer {
 
 		JLabel label_2 = new JLabel(
 				"\u0E27\u0E31\u0E19\u0E40\u0E01\u0E34\u0E14:");
-		label_2.setBounds(100, 104, 51, 24);
+		label_2.setBounds(101, 114, 51, 24);
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 15));
 
 		JLabel label_3 = new JLabel(
 				"\u0E08\u0E1A\u0E01\u0E32\u0E23\u0E28\u0E36\u0E01\u0E29\u0E32\u0E08\u0E32\u0E01:");
-		label_3.setBounds(36, 124, 116, 28);
+		label_3.setBounds(36, 149, 116, 28);
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 15));
 
 		JLabel label_4 = new JLabel("\u0E2A\u0E32\u0E02\u0E32:");
-		label_4.setBounds(106, 155, 46, 24);
+		label_4.setBounds(106, 188, 46, 24);
 		label_4.setFont(new Font("Tahoma", Font.BOLD, 15));
 
 		JLabel label_5 = new JLabel(
 				"\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E1E\u0E34\u0E40\u0E28\u0E29:");
-		label_5.setBounds(19, 184, 133, 24);
+		label_5.setBounds(19, 223, 133, 24);
 		label_5.setFont(new Font("Tahoma", Font.BOLD, 15));
 
 		JLabel label_6 = new JLabel(
 				"\u0E17\u0E35\u0E48\u0E2D\u0E22\u0E39\u0E48:");
-		label_6.setBounds(117, 209, 36, 33);
+		label_6.setBounds(116, 258, 36, 33);
 		label_6.setFont(new Font("Tahoma", Font.BOLD, 15));
 
 		JLabel label_7 = new JLabel(
 				"\u0E40\u0E1A\u0E2D\u0E23\u0E4C\u0E42\u0E17\u0E23\u0E28\u0E31\u0E1E\u0E17\u0E4C:");
-		label_7.setBounds(60, 288, 97, 24);
+		label_7.setBounds(60, 329, 97, 24);
 		label_7.setFont(new Font("Tahoma", Font.BOLD, 15));
 
 		JLabel label_8 = new JLabel(
 				"\u0E27\u0E38\u0E12\u0E34\u0E01\u0E32\u0E23\u0E28\u0E36\u0E01\u0E29\u0E32:");
-		label_8.setBounds(60, 323, 93, 26);
+		label_8.setBounds(60, 364, 93, 26);
 		label_8.setFont(new Font("Tahoma", Font.BOLD, 15));
 
 		JLabel label_9 = new JLabel(
 				"\u0E40\u0E01\u0E35\u0E48\u0E22\u0E27\u0E01\u0E31\u0E1A\u0E09\u0E31\u0E19:");
-		label_9.setBounds(72, 360, 85, 25);
+		label_9.setBounds(70, 401, 85, 25);
 		label_9.setFont(new Font("Tahoma", Font.BOLD, 15));
 
 		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setBounds(106, 386, 46, 25);
+		lblEmail.setBounds(101, 437, 46, 25);
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 15));
 
 		JButton editbtn = new JButton("\u0E41\u0E01\u0E49\u0E44\u0E02");
@@ -238,66 +238,66 @@ public class AddCustomer {
 
 		idtf = new JTextField();
 		idtf.setEditable(false);
-		idtf.setBounds(162, 56, 254, 20);
+		idtf.setBounds(163, 56, 254, 24);
 		frame.getContentPane().add(idtf);
 		idtf.setColumns(10);
 
 		nametf = new JTextField();
 		nametf.setEditable(false);
-		nametf.setBounds(162, 83, 254, 20);
+		nametf.setBounds(163, 83, 254, 24);
 		frame.getContentPane().add(nametf);
 		nametf.setColumns(10);
 
 		gratf = new JTextField();
 		gratf.setEditable(false);
-		gratf.setBounds(162, 130, 254, 20);
+		gratf.setBounds(163, 155, 254, 24);
 		frame.getContentPane().add(gratf);
 		gratf.setColumns(10);
 
 		sakhatf = new JTextField();
 		sakhatf.setEditable(false);
-		sakhatf.setBounds(162, 159, 254, 20);
+		sakhatf.setBounds(163, 192, 254, 24);
 		frame.getContentPane().add(sakhatf);
 		sakhatf.setColumns(10);
 
 		talenttf = new JTextField();
 		talenttf.setEditable(false);
-		talenttf.setBounds(162, 188, 254, 20);
+		talenttf.setBounds(163, 227, 254, 24);
 		frame.getContentPane().add(talenttf);
 		talenttf.setColumns(10);
 
 		JEditorPane adressEP = new JEditorPane();
 		adressEP.setEditable(false);
-		adressEP.setBounds(163, 222, 253, 56);
+		adressEP.setBounds(164, 266, 253, 56);
 		frame.getContentPane().add(adressEP);
 
 		phonetf = new JTextField();
 		phonetf.setEditable(false);
-		phonetf.setBounds(163, 292, 253, 20);
+		phonetf.setBounds(164, 333, 253, 28);
 		frame.getContentPane().add(phonetf);
 		phonetf.setColumns(10);
 
 		edutf = new JTextField();
 		edutf.setEditable(false);
-		edutf.setBounds(163, 328, 253, 20);
+		edutf.setBounds(164, 369, 253, 24);
 		frame.getContentPane().add(edutf);
 		edutf.setColumns(10);
 
 		aboutmetf = new JTextField();
 		aboutmetf.setEditable(false);
-		aboutmetf.setBounds(162, 364, 254, 20);
+		aboutmetf.setBounds(163, 401, 254, 28);
 		frame.getContentPane().add(aboutmetf);
 		aboutmetf.setColumns(10);
 
 		emailtf = new JTextField();
 		emailtf.setEditable(false);
-		emailtf.setBounds(162, 390, 254, 20);
+		emailtf.setBounds(163, 437, 254, 28);
 		frame.getContentPane().add(emailtf);
 		emailtf.setColumns(10);
 		
 		datetf = new JTextField();
 		datetf.setEditable(false);
-		datetf.setBounds(161, 108, 255, 20);
+		datetf.setBounds(162, 118, 255, 26);
 		frame.getContentPane().add(datetf);
 		datetf.setColumns(10);
 

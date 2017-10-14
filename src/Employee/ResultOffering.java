@@ -65,17 +65,17 @@ public class ResultOffering {
 		System.out.println(comid);
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 788, 403);
+		frame.setBounds(100, 100, 788, 329);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel label = new JLabel("\u0E1C\u0E25\u0E01\u0E32\u0E23\u0E40\u0E2A\u0E19\u0E2D\u0E07\u0E32\u0E19");
 		label.setFont(new Font("Tahoma", Font.BOLD, 25));
-		label.setBounds(60, 37, 187, 39);
+		label.setBounds(60, 23, 187, 39);
 		frame.getContentPane().add(label);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(60, 102, 658, 181);
+		scrollPane.setBounds(58, 61, 658, 181);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -131,7 +131,7 @@ public class ResultOffering {
 				frame.dispose();
 			}
 		});
-		closebtn.setBounds(613, 293, 103, 23);
+		closebtn.setBounds(613, 253, 103, 23);
 		frame.getContentPane().add(closebtn);
 		
 		JButton button = new JButton("\u0E25\u0E1A\u0E02\u0E49\u0E2D\u0E40\u0E2A\u0E19\u0E2D");
@@ -185,7 +185,7 @@ public class ResultOffering {
 				}
 			}
 		});
-		button.setBounds(60, 293, 89, 23);
+		button.setBounds(60, 253, 89, 23);
 		frame.getContentPane().add(button);
 	}
 }

@@ -112,28 +112,28 @@ public class OfferingForm {
 		
 		JLabel label_2 = new JLabel("\u0E2B\u0E21\u0E32\u0E22\u0E40\u0E25\u0E02\u0E1A\u0E23\u0E34\u0E29\u0E31\u0E17:");
 		label_2.setFont(new Font("Tahoma", Font.BOLD, 18));
-		label_2.setBounds(81, 168, 134, 38);
+		label_2.setBounds(80, 168, 134, 38);
 		frame.getContentPane().add(label_2);
 		
 		JLabel label_3 = new JLabel("\u0E23\u0E32\u0E22\u0E25\u0E30\u0E40\u0E2D\u0E35\u0E22\u0E14\u0E02\u0E49\u0E2D\u0E40\u0E2A\u0E19\u0E2D:");
 		label_3.setFont(new Font("Tahoma", Font.BOLD, 18));
-		label_3.setBounds(41, 228, 174, 29);
+		label_3.setBounds(49, 217, 165, 29);
 		frame.getContentPane().add(label_3);
 		
 		cusidtf = new JTextField();
 		cusidtf.setEditable(false);
-		cusidtf.setBounds(230, 126, 217, 20);
+		cusidtf.setBounds(230, 122, 217, 29);
 		frame.getContentPane().add(cusidtf);
 		cusidtf.setColumns(10);
 		
 		comidtf = new JTextField();
 		comidtf.setEditable(false);
-		comidtf.setBounds(230, 180, 217, 20);
+		comidtf.setBounds(230, 177, 217, 26);
 		frame.getContentPane().add(comidtf);
 		comidtf.setColumns(10);
 		
 		JEditorPane editorPane = new JEditorPane();
-		editorPane.setBounds(231, 237, 323, 101);
+		editorPane.setBounds(231, 224, 323, 101);
 		frame.getContentPane().add(editorPane);
 		
 		cusidtf.setText(Integer.toString(cusid));

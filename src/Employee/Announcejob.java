@@ -114,7 +114,7 @@ public class Announcejob {
 		}
 
 		frame = new JFrame();
-		frame.setBounds(100, 100, 608, 461);
+		frame.setBounds(100, 100, 509, 390);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -150,23 +150,23 @@ public class Announcejob {
 
 		idtf = new JTextField();
 		idtf.setEditable(false);
-		idtf.setBounds(280, 90, 191, 20);
+		idtf.setBounds(278, 87, 191, 27);
 		frame.getContentPane().add(idtf);
 		idtf.setColumns(10);
 		idtf.setText(Integer.toString(comid));
 
 		nametf = new JTextField();
-		nametf.setBounds(278, 137, 193, 20);
+		nametf.setBounds(278, 134, 193, 27);
 		frame.getContentPane().add(nametf);
 		nametf.setColumns(10);
 
 		datetf = new JTextField();
-		datetf.setBounds(278, 191, 193, 20);
+		datetf.setBounds(278, 188, 193, 27);
 		frame.getContentPane().add(datetf);
 		datetf.setColumns(10);
 
 		amounttf = new JTextField();
-		amounttf.setBounds(278, 245, 193, 20);
+		amounttf.setBounds(278, 242, 193, 27);
 		frame.getContentPane().add(amounttf);
 		amounttf.setColumns(10);
 
@@ -201,7 +201,7 @@ public class Announcejob {
 
 			}
 		});
-		savebtn.setBounds(466, 302, 89, 23);
+		savebtn.setBounds(380, 280, 89, 23);
 		frame.getContentPane().add(savebtn);
 
 		JButton canclebtn = new JButton("\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01");
@@ -217,7 +217,7 @@ public class Announcejob {
 
 			}
 		});
-		canclebtn.setBounds(368, 302, 89, 23);
+		canclebtn.setBounds(278, 280, 89, 23);
 		frame.getContentPane().add(canclebtn);
 	}
 }
