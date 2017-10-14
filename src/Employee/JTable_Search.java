@@ -28,6 +28,7 @@ import Customer.LoginForm;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JButton;
 
 /**
@@ -102,16 +103,14 @@ public class JTable_Search extends javax.swing.JFrame {
  		}
  	});
  	
- 	JMenuItem menuItem_3 = new JMenuItem("\u0E40\u0E2A\u0E19\u0E2D\u0E07\u0E32\u0E19");
- 	menuItem_3.addActionListener(new ActionListener() {
+ 	JMenuItem menuItem_2 = new JMenuItem("\u0E1C\u0E25\u0E01\u0E32\u0E23\u0E40\u0E2A\u0E19\u0E2D\u0E07\u0E32\u0E19");
+ 	menuItem_2.addActionListener(new ActionListener() {
  		public void actionPerformed(ActionEvent e) {
- 			JOffer of = new  JOffer();
-			of.frame.setVisible(true);
+ 			
+ 			ResultOffering rf = new ResultOffering();
+ 			rf.frame.setVisible(true);
  		}
  	});
- 	mnMenu.add(menuItem_3);
- 	
- 	JMenuItem menuItem_2 = new JMenuItem("\u0E1C\u0E25\u0E01\u0E32\u0E23\u0E40\u0E2A\u0E19\u0E2D\u0E07\u0E32\u0E19");
  	mnMenu.add(menuItem_2);
  	
  	JSeparator separator_2 = new JSeparator();
@@ -195,7 +194,7 @@ public class JTable_Search extends javax.swing.JFrame {
  {
      ArrayList<SearchCus> users = ListUsers(jText_Search.getText());
      DefaultTableModel model = new DefaultTableModel();
-     model.setColumnIdentifiers(new Object[]{"Id","Name","Date","Graduatedfrom","Faculty","Talent","Address","Phone","Education","AboutME","Email"});
+     model.setColumnIdentifiers(new Object[]{"รหัสประจำตัว","ชื่อ-สกุล","วันเกิด","จบจาก","คณะ","ความสามารถพิเศษ","ที่อยู่","เบอร์โทร","วุฒการศึกษา","เกี่ยบกับตัวเอง","Email"});
      Object[] row = new Object[11];
      
      for(int i = 0; i < users.size(); i++)
@@ -264,9 +263,21 @@ public class JTable_Search extends javax.swing.JFrame {
      JButton button = new JButton("\u0E40\u0E2A\u0E19\u0E2D\u0E07\u0E32\u0E19");
      button.addActionListener(new ActionListener() {
      	public void actionPerformed(ActionEvent e) {
+     		
+     		int column1 = 0;
+			int row = jTable_Users.getSelectedRow();
+			String value = jTable_Users.getModel().getValueAt(row, column1).toString();
+			
+			
+			OfferingSession os = new OfferingSession();
+			os.setCol1(value);
+     		
      		OfferingForm window = new OfferingForm();
  			window.frame.setVisible(true);
  			frame.dispose();
+ 			
+ 			
+ 			
      	}
      });
 
