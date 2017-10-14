@@ -80,7 +80,8 @@ public class JobOffering {
 		model.addColumn("รหัสใบสมัคร");
 		model.addColumn("ชื่อผู้สมัคร");
 		model.addColumn("บริษัท");
-		model.addColumn("ตำแหน่ง");
+		model.addColumn("ชื่องาน");
+		model.addColumn("รายละเอียด");
 		model.addColumn("สถานะ");
 		
 		try {
@@ -92,7 +93,7 @@ public class JobOffering {
 
 			// C:\Users\numan\git\Project\AdvoopPrj\prjoop.accdb
 
-			query = "SELECT applying.appid,cus.cusname,com.comname,announce.aboutjob,applying.status FROM ((applying inner join com on applying.comid=com.comid)inner join cus on applying.cusid=cus.cusid)inner join announce on applying.anid=announce.anid where com.comid = '"
+			query = "SELECT applying.appid,cus.cusname,com.comname,announce.aboutjob,applying.appliying,applying.status FROM ((applying inner join com on applying.comid=com.comid)inner join cus on applying.cusid=cus.cusid)inner join announce on applying.anid=announce.anid where com.comid = '"
 					+ comid + "'";
 			PreparedStatement pre;
 			pre = conn.prepareStatement(query);
@@ -109,7 +110,7 @@ public class JobOffering {
 				model.setValueAt(rs.getString(3), row, 2);
 				model.setValueAt(rs.getString(4), row, 3);
                 model.setValueAt(rs.getString(5), row, 4);
-				 // model.setValueAt(rs.getString(6), row, 5);
+				model.setValueAt(rs.getString(6), row, 5);
 				 
 
 				row++;
@@ -165,7 +166,7 @@ public class JobOffering {
 							JOptionPane.showMessageDialog(null,
 									"บันทึกเรียบร้อย");
 							
-							model.setValueAt("เปลี่ยนสถานะแล้ว", row, 2);
+							model.setValueAt("ผ่าน", row, 5);
 							
 						} else {
 							JOptionPane.showMessageDialog(null, "ERROR");
@@ -209,7 +210,7 @@ public class JobOffering {
 							JOptionPane.showMessageDialog(null,
 									"บันทึกเรียบร้อย");
 							
-							model.setValueAt("ไม่ให้ผ่าน", row, 2);
+							model.setValueAt("ไม่ผ่านค่ะ", row, 5);
 							
 						} else {
 							JOptionPane.showMessageDialog(null, "ERROR");
@@ -230,6 +231,24 @@ public class JobOffering {
 		
 		
 		frame.getContentPane().add(button_3);
+		
+		JButton button_1 = new JButton("\u0E2D\u0E48\u0E32\u0E19\u0E23\u0E32\u0E22\u0E25\u0E30\u0E40\u0E2D\u0E35\u0E22\u0E14");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int column1 = 4;
+				int row = table.getSelectedRow();
+				String value = table.getModel().getValueAt(row, column1).toString();
+				
+				ApplyreadSession as = new ApplyreadSession();
+				as.setRead(value);
+				
+				ReadAppdes ra = new ReadAppdes();
+				ra.frame.setVisible(true);
+				
+			}
+		});
+		button_1.setBounds(405, 37, 113, 23);
+		frame.getContentPane().add(button_1);
 	}
-
 }

@@ -1,4 +1,4 @@
-package Customer;
+package Employee;
 
 import java.awt.EventQueue;
 
@@ -8,13 +8,12 @@ import javax.swing.JTextPane;
 import java.awt.BorderLayout;
 
 import javax.swing.JButton;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ReadOffer {
+public class ReadAppdes {
 
-	JFrame frame;
+	 JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -23,7 +22,7 @@ public class ReadOffer {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ReadOffer window = new ReadOffer();
+					ReadAppdes window = new ReadAppdes();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +34,7 @@ public class ReadOffer {
 	/**
 	 * Create the application.
 	 */
-	public ReadOffer() {
+	public ReadAppdes() {
 		initialize();
 	}
 
@@ -43,20 +42,19 @@ public class ReadOffer {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JTextPane textPane = new JTextPane();
 		frame.getContentPane().add(textPane, BorderLayout.CENTER);
-		SessionOffer so = new SessionOffer();
-		textPane.setText(so.getDesoffer());
 		
-		JButton button = new JButton("\u0E1B\u0E34\u0E2B\u0E19\u0E49\u0E32\u0E15\u0E48\u0E32\u0E07\u0E19\u0E35\u0E49");
+		ApplyreadSession as = new ApplyreadSession();
+		textPane.setText(as.getRead());
+		
+		JButton button = new JButton("\u0E1B\u0E34\u0E14\u0E2B\u0E19\u0E49\u0E32\u0E15\u0E48\u0E32\u0E07\u0E19\u0E35\u0E49");
 		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				
 				textPane.setText(null);
 				frame.dispose();
