@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -27,6 +28,7 @@ import Customer.LoginForm;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 
 /**
 *
@@ -37,7 +39,10 @@ public class JTable_Search extends javax.swing.JFrame {
  /**
   * Creates new form JTable_Search
   */
+	 
+	
  public JTable_Search() {
+	 
  	setAutoRequestFocus(false);
  	
  	JMenuBar menuBar = new JMenuBar();
@@ -74,7 +79,7 @@ public class JTable_Search extends javax.swing.JFrame {
  	JMenuItem menuItem_1 = new JMenuItem("\u0E1C\u0E39\u0E49\u0E17\u0E35\u0E48\u0E2A\u0E21\u0E31\u0E04\u0E23\u0E07\u0E32\u0E19");
  	menuItem_1.addActionListener(new ActionListener() {
  		public void actionPerformed(ActionEvent e) {
- 			OfferingForm window = new OfferingForm();
+ 			JobOffering window = new JobOffering();
  			window.frame.setVisible(true);
  			frame.dispose();
  		}
@@ -96,6 +101,15 @@ public class JTable_Search extends javax.swing.JFrame {
 			 new JTable_Search().setDefaultCloseOperation(DISPOSE_ON_CLOSE);
  		}
  	});
+ 	
+ 	JMenuItem menuItem_3 = new JMenuItem("\u0E40\u0E2A\u0E19\u0E2D\u0E07\u0E32\u0E19");
+ 	menuItem_3.addActionListener(new ActionListener() {
+ 		public void actionPerformed(ActionEvent e) {
+ 			JOffer of = new  JOffer();
+			of.frame.setVisible(true);
+ 		}
+ 	});
+ 	mnMenu.add(menuItem_3);
  	
  	JMenuItem menuItem_2 = new JMenuItem("\u0E1C\u0E25\u0E01\u0E32\u0E23\u0E40\u0E2A\u0E19\u0E2D\u0E07\u0E32\u0E19");
  	mnMenu.add(menuItem_2);
@@ -123,7 +137,7 @@ public class JTable_Search extends javax.swing.JFrame {
  // function to connect to mysql database
  public Connection getConnection()
  {
-     Connection con = null;
+	 Connection con = null;
      
      try{
     	 Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -139,10 +153,9 @@ public class JTable_Search extends javax.swing.JFrame {
  public ArrayList<SearchCus> ListUsers(String ValToSearch)
  {
      ArrayList<SearchCus> usersList = new ArrayList<SearchCus>();
-     
      Statement st;
-     ResultSet rs;
-     
+ 	ResultSet rs;
+   
      try{
          Connection con = getConnection();
          st = con.createStatement();
@@ -240,24 +253,38 @@ public class JTable_Search extends javax.swing.JFrame {
              "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10", "Title 11"
          }
      ));
+    
      jScrollPane1.setViewportView(jTable_Users);
+     
+     
      
      lblHomeCompany = new JLabel("Home Company");
      lblHomeCompany.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
+     
+     JButton button = new JButton("\u0E40\u0E2A\u0E19\u0E2D\u0E07\u0E32\u0E19");
+     button.addActionListener(new ActionListener() {
+     	public void actionPerformed(ActionEvent e) {
+     		OfferingForm window = new OfferingForm();
+ 			window.frame.setVisible(true);
+ 			frame.dispose();
+     	}
+     });
 
      javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
      jPanel2Layout.setHorizontalGroup(
-     	jPanel2Layout.createParallelGroup(Alignment.LEADING)
-     		.addGroup(Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+     	jPanel2Layout.createParallelGroup(Alignment.TRAILING)
+     		.addGroup(jPanel2Layout.createSequentialGroup()
      			.addContainerGap(44, Short.MAX_VALUE)
-     			.addGroup(jPanel2Layout.createParallelGroup(Alignment.TRAILING, false)
-     				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 1266, GroupLayout.PREFERRED_SIZE)
-     				.addGroup(jPanel2Layout.createSequentialGroup()
-     					.addComponent(lblHomeCompany, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
-     					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-     					.addComponent(jText_Search, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
-     					.addPreferredGap(ComponentPlacement.RELATED)
-     					.addComponent(jButton_Search)))
+     			.addGroup(jPanel2Layout.createParallelGroup(Alignment.TRAILING)
+     				.addComponent(button)
+     				.addGroup(jPanel2Layout.createParallelGroup(Alignment.TRAILING, false)
+     					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 1266, GroupLayout.PREFERRED_SIZE)
+     					.addGroup(jPanel2Layout.createSequentialGroup()
+     						.addComponent(lblHomeCompany, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
+     						.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+     						.addComponent(jText_Search, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+     						.addPreferredGap(ComponentPlacement.RELATED)
+     						.addComponent(jButton_Search))))
      			.addGap(44))
      );
      jPanel2Layout.setVerticalGroup(
@@ -271,7 +298,9 @@ public class JTable_Search extends javax.swing.JFrame {
      				.addComponent(lblHomeCompany))
      			.addGap(18)
      			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-     			.addContainerGap(73, Short.MAX_VALUE))
+     			.addPreferredGap(ComponentPlacement.UNRELATED)
+     			.addComponent(button)
+     			.addContainerGap(39, Short.MAX_VALUE))
      );
      jPanel2.setLayout(jPanel2Layout);
 
