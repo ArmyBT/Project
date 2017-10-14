@@ -11,7 +11,6 @@ public class command {
 
 	public static void main(String[] args) {
 
-		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 
 		System.out
@@ -21,7 +20,7 @@ public class command {
 		String name = input.nextLine();
 		
 		String check = "";
-		
+		String test = "";
 
 		try {
 

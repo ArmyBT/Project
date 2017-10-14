@@ -1,6 +1,5 @@
 package Customer;
 
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,10 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JEditorPane;
 
-
-
-
-
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,10 +24,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
-
-
-
+import Employee.JTable_Search;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -136,8 +133,6 @@ public class AddCustomer {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 615, 472);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
 
 		/*
 		 * UtilDateModel model = new UtilDateModel();
