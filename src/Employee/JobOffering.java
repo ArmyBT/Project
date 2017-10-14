@@ -1,47 +1,36 @@
 package Employee;
 
-
 import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
+
+import Customer.Session;
+
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-
-import Customer.AddCustomer;
-import Customer.ApplyingForm;
-import Customer.ApplyingSession;
-import Customer.LoginForm;
-import Customer.Session;
-import Customer.Testjtable;
 
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
+public class JobOffering {
 
-import java.awt.Font;
-import javax.swing.JSeparator;
-
-public class JobOffering  extends JFrame {
-	
+	 JFrame frame;
+	private JTable table;
+	String query, sql, driver;
+	Statement stmt;
+	ResultSet rs;
 	Connection conn;
-	Statement s = null;
-	public JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -49,26 +38,9 @@ public class JobOffering  extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				
 				try {
-			         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-			             if ("Nimbus".equals(info.getName())) {
-			                 javax.swing.UIManager.setLookAndFeel(info.getClassName());
-			                 break;
-			             }
-			         }
-			     } catch (ClassNotFoundException ex) {
-			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-			     } catch (InstantiationException ex) {
-			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-			     } catch (IllegalAccessException ex) {
-			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-			     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			         java.util.logging.Logger.getLogger(JTable_Search.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-			     }
-				try {
-				JobOffering frame = new JobOffering();
-				frame.setVisible(true);
+					JobOffering window = new JobOffering();
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -76,30 +48,35 @@ public class JobOffering  extends JFrame {
 		});
 	}
 
-
+	/**
+	 * Create the application.
+	 */
 	public JobOffering() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 991, 368);
-		setTitle("");
-		getContentPane().setLayout(null);
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
 		
-		// Customer Label
-		JLabel lblCustomer = new JLabel("\u0E08\u0E33\u0E19\u0E27\u0E19\u0E1C\u0E39\u0E49\u0E2A\u0E21\u0E31\u0E04\u0E23\u0E07\u0E32\u0E19");
-		lblCustomer.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblCustomer.setBounds(72, 25, 270, 31);
-		getContentPane().add(lblCustomer);
+		Session ss = new Session();
+		int cusid = Integer.parseInt(ss.getSession());
+		System.out.println(cusid);
 		
-		// ScrollPane for Table
+		frame = new JFrame();
+		frame.setBounds(100, 100, 802, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(72, 63, 836, 188);
-		getContentPane().add(scrollPane);
+		scrollPane.setBounds(81, 69, 705, 150);
+		frame.getContentPane().add(scrollPane);
 		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 		
-		// Table
-		JTable table = new JTable();
-				
-		// Model for Table
-		DefaultTableModel model = (DefaultTableModel)table.getModel();
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.addColumn("หมายเลยการสมัครงาน");
 		model.addColumn("รหัสผู้สมัคร");
 		model.addColumn("ชื่อผู้สมัคร");
@@ -108,19 +85,23 @@ public class JobOffering  extends JFrame {
 		model.addColumn("รายละเอียดเพิ่มเติม");
 		model.addColumn("หมายเลขบริษัท");
 		
-		Scanner input = new Scanner(System.in);
-		String check = "SELECT applying.appid,applying.cusid,cus.cusname,cus.graduatedfrom,cus.education, applying.appliying, applying.comid FROM applying INNER JOIN cus ON applying.cusid = cus.cusid;  ";
-
 		try {
 
-			Connection conn = DriverManager.getConnection("jdbc:ucanaccess://C:/AdvoopPrj/prjoop.accdb");
-			Statement s = conn.createStatement();
-			
+			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+
+			conn = DriverManager
+					.getConnection("jdbc:ucanaccess://C:/AdvoopPrj/prjoop.accdb");
+
+			// C:\Users\numan\git\Project\AdvoopPrj\prjoop.accdb
+
+			query = "SELECT applying.appid,applying.cusid,cus.cusname,cus.graduatedfrom,cus.education, applying.appliying, applying.comid FROM applying INNER JOIN cus ON applying.cusid = cus.cusid";
+			PreparedStatement pre;
+			pre = conn.prepareStatement(query);
+			ResultSet rs = pre.executeQuery();
+
 			int row = 0;
-			ResultSet rs = s.executeQuery(check);
-			
-			while((rs!=null) && (rs.next()))
-            {			
+			while ((rs != null) && (rs.next())) {
+				model.addRow(new Object[0]);
 				model.addRow(new Object[0]);
 				model.setValueAt(rs.getString(1), row, 0);
 				model.setValueAt(rs.getString(2), row, 1);
@@ -129,37 +110,126 @@ public class JobOffering  extends JFrame {
 				model.setValueAt(rs.getString(5), row, 4);
 				model.setValueAt(rs.getString(6), row, 5);
 				model.setValueAt(rs.getString(7), row, 6);
-				row++;
-				
-            }
-			//rs1.close();
-             
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(null, e.getMessage());
-			e.printStackTrace();
-		}
-		
-		int row = table.getRowCount();
-		int column = table.getColumnCount();
-		for (int j = 0; j  < row; j++) {
-		    for (int i = 0; i  < column; i++) {
-		        System.out.println(table.getValueAt(j, i));
-		    }
-		}
-		
-		try {
-			if(s != null) {
-				s.close();
-				conn.close();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				 // model.setValueAt(rs.getString(6), row, 5);
+				 
 
-		scrollPane.setViewportView(table);		
+				row++;
+
+			}
+
+		} catch (Exception eb) {
+			System.err.println(eb);
+
+		}
+		
+		JLabel label = new JLabel("\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E2A\u0E16\u0E32\u0E19\u0E30\u0E1C\u0E39\u0E49\u0E2A\u0E21\u0E31\u0E04\u0E23");
+		label.setFont(new Font("Tahoma", Font.BOLD, 25));
+		label.setBounds(47, 27, 241, 31);
+		frame.getContentPane().add(label);
+		
+		JButton button = new JButton("\u0E1B\u0E34\u0E14\u0E2B\u0E19\u0E49\u0E32\u0E15\u0E48\u0E32\u0E07\u0E19\u0E35\u0E49");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				frame.dispose();
+				
+			}
+		});
+		button.setBounds(637, 227, 115, 23);
+		frame.getContentPane().add(button);
+		
+		JButton button_2 = new JButton("\u0E1C\u0E48\u0E32\u0E19");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int column1 = 1;
+				int column = 0;
+				int row = table.getSelectedRow();
+				String value = table.getModel().getValueAt(row, column1).toString();
+				String value1 = table.getModel().getValueAt(row, column).toString();
+				int off = Integer.parseInt(value1);
+				
+				sql = "UPDATE applying SET status = 'ผ่าน'WHERE appid = '"+off+"'; ";
+
+				try {
+
+					int confirm = JOptionPane.showConfirmDialog(null,
+							"คุณต้องการให้ผู้ใช้ 'ผ่าน'หรือไม่:" + value + "ใช้",
+							"ไม่", JOptionPane.YES_NO_OPTION);
+					if (confirm == JOptionPane.YES_OPTION) {
+
+						Statement s = conn.createStatement();
+						//stmt = conn.createStatement();
+
+						if (s.executeUpdate(sql) != 0) {
+							JOptionPane.showMessageDialog(null,
+									"บันทึกเรียบร้อย");
+							
+							model.setValueAt("เปลี่ยนสถานะแล้ว", row, 2);
+							
+						} else {
+							JOptionPane.showMessageDialog(null, "ERROR");
+						}
+
+					} else if (confirm == JOptionPane.NO_OPTION) {
+						return;
+					}
+
+				} catch (Exception err) {
+					err.printStackTrace();
+				}
+			}
+		});
+		button_2.setBounds(528, 37, 115, 23);
+		frame.getContentPane().add(button_2);
+		
+		JButton button_3 = new JButton("\u0E44\u0E21\u0E48\u0E1C\u0E48\u0E32\u0E19");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int column1 = 1;
+				int column = 0;
+				int row = table.getSelectedRow();
+				String value = table.getModel().getValueAt(row, column1).toString();
+				String value1 = table.getModel().getValueAt(row, column).toString();
+				int off = Integer.parseInt(value1);
+				
+				sql = "UPDATE applying SET status = 'ไม่ผ่าน'WHERE appid = '"+off+"'; ";
+
+				try {
+
+					int confirm = JOptionPane.showConfirmDialog(null,
+							"คุณไม่ต้องการให้ผู้สมัคร 'ผ่าน'ใช่หรือไม่:" + value + "ใช้",
+							"ไม่", JOptionPane.YES_NO_OPTION);
+					if (confirm == JOptionPane.YES_OPTION) {
+
+						Statement s = conn.createStatement();
+
+						if (s.executeUpdate(sql) != 0) {
+							JOptionPane.showMessageDialog(null,
+									"บันทึกเรียบร้อย");
+							
+							model.setValueAt("ไม่ให้ผ่าน", row, 2);
+							
+						} else {
+							JOptionPane.showMessageDialog(null, "ERROR");
+						}
+
+					} else if (confirm == JOptionPane.NO_OPTION) {
+						return;
+					}
+
+				} catch (Exception err) {
+					err.printStackTrace();
+				}
+				
+			}
+		});
+		button_3.setBounds(652, 37, 100, 23);
 		
 		
+		
+		frame.getContentPane().add(button_3);
 	}
+
 }
