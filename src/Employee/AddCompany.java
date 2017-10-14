@@ -14,16 +14,16 @@ import java.awt.Font;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import java.util.Date;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
+
 
 import Customer.Session;
 
-import com.toedter.calendar.JDateChooser;
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -35,16 +35,17 @@ public class AddCompany {
 	private JTextField usernametf;
 	private JTextField textPhone;
 	private JTextField textCEO;
-	protected JDateChooser dateChooser_1;
 	private JTextField textAddress;
 	private JTextField textContact;
 	private JTextField idtf;
 	private JTextField emailtf;
+	private JTextField datetf;
 
 	String query, sql, driver;
 	Statement stmt;
 	ResultSet rs;
 	Connection conn;
+	
 
 	/**
 	 * Launch the application.
@@ -111,11 +112,11 @@ public class AddCompany {
 
 			while (rs.next()) {
 
-				System.out.println("\n" + rs.getString(8) + "\t"
-						+ rs.getString(1) + "\t" + rs.getString(2) + "\t"
-						+ rs.getString(3) + "\t" + rs.getString(4) + "\t"
-						+ rs.getString(5) + "\t" + rs.getString(6) + "\t"
-						+ rs.getString(7));
+				System.out.println("\n"
+						+ rs.getString("comid") + "\t" + rs.getString("comname") + "\t"
+						+ rs.getString("address") + "\t" + rs.getString("about") + "\t"
+						+ rs.getString("found") + "\t" + rs.getString("phone") + "\t"
+						+ rs.getString("ceo")+"\t"+ rs.getString("email"));
 
 				// String dates = new
 				// SimpleDateFormat("dd/MM/yyyy").format(rs.getString(5));
@@ -161,10 +162,6 @@ public class AddCompany {
 				
 			}
 		});
-
-		JDateChooser dateChooser_1 = new JDateChooser();
-		dateChooser_1.setDateFormatString("dd-MM-yyyy");
-		dateChooser_1.setEnabled(true);
 		// String dob=""+dateChooser_1.getDate();
 
 		JLabel Bdate = new JLabel(
@@ -211,35 +208,33 @@ public class AddCompany {
 
 		emailtf = new JTextField();
 		emailtf.setColumns(10);
+		
+		datetf = new JTextField();
+		datetf.setColumns(10);
 
 		try {
 
-			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 
-			conn = DriverManager
-					.getConnection("jdbc:ucanaccess://C:/AdvoopPrj/prjoop.accdb");
 
-			// C:\Users\numan\git\Project\AdvoopPrj\prjoop.accdb
 
 			String qq = "SELECT * FROM com where comid = '" + comid + "'";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(qq);
 
 			while (rs.next()) {
-				String dateValue = rs.getString(4);
-				Date date = new SimpleDateFormat("dd-MM-yyyy")
-						.parse(dateValue);
 				
-				//Date date = new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString(4));
+			
 
-				idtf.setText(rs.getString(8));
-				usernametf.setText(rs.getString(1));
-				textAddress.setText(rs.getString(2));
-				textPhone.setText(rs.getString(5));
-				dateChooser_1.setDate(date);
-				textCEO.setText(rs.getString(6));
-				textContact.setText(rs.getString(3));
-				emailtf.setText(rs.getString(7));
+				
+
+				idtf.setText(rs.getString("comid"));
+				usernametf.setText(rs.getString("comname"));
+				textAddress.setText(rs.getString("address"));
+				textPhone.setText(rs.getString("phone"));
+				datetf.setText(rs.getString("found"));
+				textCEO.setText(rs.getString("ceo"));
+				textContact.setText(rs.getString("about"));
+				emailtf.setText(rs.getString("email"));
 
 			}
 		} catch (Exception eb) {
@@ -247,16 +242,13 @@ public class AddCompany {
 
 		}
 
-		String dates = new SimpleDateFormat("dd/MM/yyyy").format(dateChooser_1
-				.getDate());
-
 		JButton btnSave = new JButton("\u0E1A\u0E31\u0E19\u0E17\u0E36\u0E01");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				sql = "UPDATE com SET comname = '" + usernametf.getText()
-						+ "',address='" + textAddress.getText() + "',found=#"
-						+ dates + "#,phone='" + textPhone.getText() + "',ceo='"
+						+ "',address='" + textAddress.getText() + "',found='"
+						+ datetf.getText() + "',phone='" + textPhone.getText() + "',ceo='"
 						+ textCEO.getText() + "',about='"
 						+ textContact.getText() + "',email='"
 						+ emailtf.getText() + "'where comid = '" + comid + "'";
@@ -291,273 +283,98 @@ public class AddCompany {
 
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 18));
+		
+		
 
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout
-				.setHorizontalGroup(groupLayout
-						.createParallelGroup(Alignment.TRAILING)
-						.addGroup(
-								groupLayout
-										.createSequentialGroup()
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.TRAILING)
-														.addGroup(
-																groupLayout
-																		.createSequentialGroup()
-																		.addGap(403)
-																		.addComponent(
-																				btnCancel)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				btnSave))
-														.addGroup(
-																groupLayout
-																		.createSequentialGroup()
-																		.addGap(10)
-																		.addGroup(
-																				groupLayout
-																						.createParallelGroup(
-																								Alignment.TRAILING)
-																						.addComponent(
-																								lblCompany)
-																						.addGroup(
-																								groupLayout
-																										.createSequentialGroup()
-																										.addGroup(
-																												groupLayout
-																														.createParallelGroup(
-																																Alignment.LEADING)
-																														.addGroup(
-																																groupLayout
-																																		.createParallelGroup(
-																																				Alignment.TRAILING)
-																																		.addComponent(
-																																				lblCeo)
-																																		.addComponent(
-																																				Phone,
-																																				GroupLayout.PREFERRED_SIZE,
-																																				160,
-																																				GroupLayout.PREFERRED_SIZE)
-																																		.addComponent(
-																																				Bdate)
-																																		.addComponent(
-																																				AboutME)
-																																		.addComponent(
-																																				lblEmail))
-																														.addGroup(
-																																groupLayout
-																																		.createSequentialGroup()
-																																		.addGap(80)
-																																		.addGroup(
-																																				groupLayout
-																																						.createParallelGroup(
-																																								Alignment.TRAILING)
-																																						.addComponent(
-																																								lblId)
-																																						.addComponent(
-																																								lblUsername)
-																																						.addComponent(
-																																								Address,
-																																								GroupLayout.PREFERRED_SIZE,
-																																								48,
-																																								GroupLayout.PREFERRED_SIZE))))
-																										.addGap(4)))
-																		.addGap(18)
-																		.addGroup(
-																				groupLayout
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								emailtf,
-																								GroupLayout.DEFAULT_SIZE,
-																								276,
-																								Short.MAX_VALUE)
-																						.addComponent(
-																								textCEO,
-																								GroupLayout.DEFAULT_SIZE,
-																								276,
-																								Short.MAX_VALUE)
-																						.addComponent(
-																								textContact,
-																								GroupLayout.DEFAULT_SIZE,
-																								276,
-																								Short.MAX_VALUE)
-																						.addComponent(
-																								textAddress,
-																								GroupLayout.DEFAULT_SIZE,
-																								276,
-																								Short.MAX_VALUE)
-																						.addComponent(
-																								idtf,
-																								GroupLayout.DEFAULT_SIZE,
-																								276,
-																								Short.MAX_VALUE)
-																						.addComponent(
-																								usernametf,
-																								GroupLayout.DEFAULT_SIZE,
-																								276,
-																								Short.MAX_VALUE)
-																						.addGroup(
-																								groupLayout
-																										.createParallelGroup(
-																												Alignment.TRAILING,
-																												false)
-																										.addComponent(
-																												dateChooser_1,
-																												Alignment.LEADING,
-																												GroupLayout.DEFAULT_SIZE,
-																												GroupLayout.DEFAULT_SIZE,
-																												Short.MAX_VALUE)
-																										.addComponent(
-																												textPhone,
-																												Alignment.LEADING,
-																												GroupLayout.DEFAULT_SIZE,
-																												169,
-																												Short.MAX_VALUE)))))
-										.addGap(69)));
-		groupLayout
-				.setVerticalGroup(groupLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								groupLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(lblCompany,
-												GroupLayout.PREFERRED_SIZE, 76,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(40)
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																groupLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				idtf,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addGap(8)
-																		.addComponent(
-																				usernametf,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE))
-														.addGroup(
-																groupLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				lblId)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				lblUsername)))
-										.addGap(5)
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																textAddress,
-																GroupLayout.PREFERRED_SIZE,
-																65,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																Address,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(11)
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																Bdate,
-																GroupLayout.PREFERRED_SIZE,
-																22,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																dateChooser_1,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(8)
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																groupLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				textPhone,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				textCEO,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addGap(18)
-																		.addComponent(
-																				textContact,
-																				GroupLayout.PREFERRED_SIZE,
-																				65,
-																				GroupLayout.PREFERRED_SIZE))
-														.addGroup(
-																groupLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				Phone,
-																				GroupLayout.PREFERRED_SIZE,
-																				22,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addPreferredGap(
-																				ComponentPlacement.UNRELATED)
-																		.addComponent(
-																				lblCeo)
-																		.addGap(18)
-																		.addComponent(
-																				AboutME,
-																				GroupLayout.PREFERRED_SIZE,
-																				22,
-																				GroupLayout.PREFERRED_SIZE)))
-										.addPreferredGap(
-												ComponentPlacement.UNRELATED)
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(lblEmail)
-														.addComponent(
-																emailtf,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(13)
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																btnSave,
-																GroupLayout.PREFERRED_SIZE,
-																26,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																btnCancel,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																Short.MAX_VALUE))
-										.addGap(76)));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(403)
+							.addComponent(btnCancel)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnSave))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(10)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblCompany)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+											.addComponent(lblCeo)
+											.addComponent(Phone, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+											.addComponent(Bdate)
+											.addComponent(AboutME)
+											.addComponent(lblEmail))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addGap(80)
+											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+												.addComponent(lblId)
+												.addComponent(lblUsername)
+												.addComponent(Address, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))))
+									.addGap(4)))
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(emailtf, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+								.addComponent(textCEO, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+								.addComponent(textContact, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+								.addComponent(textAddress, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+								.addComponent(idtf, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+								.addComponent(usernametf, GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+								.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+									.addComponent(datetf, Alignment.LEADING)
+									.addComponent(textPhone, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))))
+					.addGap(69))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblCompany, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+					.addGap(40)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(idtf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(8)
+							.addComponent(usernametf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblId)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblUsername)))
+					.addGap(5)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textAddress, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Address, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(Bdate, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+						.addComponent(datetf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(8)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(textPhone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(textCEO, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(textContact, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(Phone, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblCeo)
+							.addGap(18)
+							.addComponent(AboutME, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblEmail)
+						.addComponent(emailtf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(13)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnCancel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(76))
+		);
 		frame.getContentPane().setLayout(groupLayout);
 
 	}

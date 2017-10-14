@@ -47,6 +47,7 @@ public class AddCustomer {
 	Statement stmt;
 	ResultSet rs;
 	Connection conn;
+	private JTextField datetf;
 
 	/**
 	 * Launch the application.
@@ -293,11 +294,12 @@ public class AddCustomer {
 		emailtf.setBounds(162, 390, 254, 20);
 		frame.getContentPane().add(emailtf);
 		emailtf.setColumns(10);
-
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setDateFormatString("dd-MM-yyyy");
-		dateChooser.setBounds(161, 104, 168, 24);
-		frame.getContentPane().add(dateChooser);
+		
+		datetf = new JTextField();
+		datetf.setEditable(false);
+		datetf.setBounds(161, 108, 255, 20);
+		frame.getContentPane().add(datetf);
+		datetf.setColumns(10);
 
 		try {
 
@@ -313,23 +315,23 @@ public class AddCustomer {
 			rs = stmt.executeQuery(qq);
 
 			while (rs.next()) {
-				String dateValue = rs.getString(2);
-				Date date = new SimpleDateFormat("dd-MM-yyyy").parse(dateValue);
+				//String dateValue = rs.getString(2);
+				//Date date = new SimpleDateFormat("dd-MM-yyyy").parse(dateValue);
 
 				// Date date = new
 				// SimpleDateFormat("dd/MM/yyyy").parse(rs.getString(4));
 
-				idtf.setText(rs.getString(11));
-				nametf.setText(rs.getString(1));
-				gratf.setText(rs.getString(3));
-				phonetf.setText(rs.getString(7));
-				dateChooser.setDate(date);
-				talenttf.setText(rs.getString(5));
-				aboutmetf.setText(rs.getString(9));
-				emailtf.setText(rs.getString(10));
-				adressEP.setText(rs.getString(6));
-				edutf.setText(rs.getString(8));
-				sakhatf.setText(rs.getString(4));
+				idtf.setText(rs.getString("cusid"));
+				nametf.setText(rs.getString("cusname"));
+				gratf.setText(rs.getString("graduatedfrom"));
+				phonetf.setText(rs.getString("phone"));
+				datetf.setText(rs.getString("bdate"));
+				talenttf.setText(rs.getString("talent"));
+				aboutmetf.setText(rs.getString("aboutme"));
+				emailtf.setText(rs.getString("email"));
+				adressEP.setText(rs.getString("address"));
+				edutf.setText(rs.getString("education"));
+				sakhatf.setText(rs.getString("faculty"));
 
 			}
 		} catch (Exception eb) {
@@ -351,6 +353,7 @@ public class AddCustomer {
 				adressEP.setEditable(true);
 				edutf.setEditable(true);
 				sakhatf.setEditable(true);
+				datetf.setEditable(true);
 				editbtn.setEnabled(false);
 			}
 		});
@@ -368,6 +371,7 @@ public class AddCustomer {
 				adressEP.setEditable(false);// 1
 				edutf.setEditable(false);// 1
 				sakhatf.setEditable(false);// 1
+				datetf.setEditable(false);
 				editbtn.setEnabled(true);
 				
 				
@@ -375,15 +379,12 @@ public class AddCustomer {
 			}
 		});
 
-		String dates = new SimpleDateFormat("dd/MM/yyyy").format(dateChooser
-				.getDate());
-
 		savebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				sql = "UPDATE cus SET cusname = '" + nametf.getText()
-						+ "',address='" + adressEP.getText() + "',bdate=#"
-						+ dates + "#,phone='" + phonetf.getText()
+						+ "',address='" + adressEP.getText() + "',bdate='"
+						+ datetf.getText() + "',phone='" + phonetf.getText()
 						+ "',aboutme='" + aboutmetf.getText()
 						+ "',graduatedfrom='" + gratf.getText() + "',email='"
 						+ emailtf.getText() + "',education='" + edutf.getText()
@@ -425,7 +426,9 @@ public class AddCustomer {
 				adressEP.setEditable(false);// 1
 				edutf.setEditable(false);// 1
 				sakhatf.setEditable(false);// 1
+				datetf.setEditable(false);
 				editbtn.setEnabled(true);
+				
 
 			}
 		});

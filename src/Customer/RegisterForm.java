@@ -182,6 +182,7 @@ try {
 		System.out.println(myDate);
 		System.out.println(new SimpleDateFormat("dd/MM/yyyy").format(myDate));
 		String dates = new SimpleDateFormat("dd/MM/yyyy").format(myDate);
+		System.out.println(dates);
 		
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -249,9 +250,9 @@ try {
 					//System.out.println(id1);
 					
 					if(dio.equals("Company")){
-						type = "insert into com (comid,comname,address,about,found,phone,ceo,email) values('"+id1+"','empty','empty','empty',#"+dates+"#,'empty','empty','empty')";
+						type = "insert into com (comid,comname,address,about,found,phone,ceo,email) values('"+id1+"','empty','empty','empty','"+dates+"','empty','empty','empty')";
 					}else if(dio.equals("Appllicant")){
-						type = "insert into cus (cusid,cusname,bdate,graduatedfrom,faculty,talent,address,phone,education,aboutme,email) values('"+id1+"','empty',#"+dates+"#,'empty','empty','empty','empty','empty','empty','empty','empty')";
+						type = "insert into cus (cusid,cusname,bdate,graduatedfrom,faculty,talent,address,phone,education,aboutme,email) values('"+id1+"','empty','"+dates+"','empty','empty','empty','empty','empty','empty','empty','empty')";
 					}
 					stmt.executeUpdate(type);
 					

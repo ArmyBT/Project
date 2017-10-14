@@ -61,29 +61,27 @@ public class JobOffering {
 	private void initialize() {
 		
 		Session ss = new Session();
-		int cusid = Integer.parseInt(ss.getSession());
-		System.out.println(cusid);
+		int comid = Integer.parseInt(ss.getSession());
+		System.out.println(comid);
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 802, 300);
+		frame.setBounds(100, 100, 808, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(81, 69, 705, 150);
+		scrollPane.setBounds(47, 66, 705, 150);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
-		model.addColumn("หมายเลยการสมัครงาน");
-		model.addColumn("รหัสผู้สมัคร");
+		model.addColumn("รหัสใบสมัคร");
 		model.addColumn("ชื่อผู้สมัคร");
-		model.addColumn("จบจาก");
-		model.addColumn("วุฒิการศึกษา");
-		model.addColumn("รายละเอียดเพิ่มเติม");
-		model.addColumn("หมายเลขบริษัท");
+		model.addColumn("บริษัท");
+		model.addColumn("ตำแหน่ง");
+		model.addColumn("สถานะ");
 		
 		try {
 
@@ -94,22 +92,23 @@ public class JobOffering {
 
 			// C:\Users\numan\git\Project\AdvoopPrj\prjoop.accdb
 
-			query = "SELECT applying.appid,applying.cusid,cus.cusname,cus.graduatedfrom,cus.education, applying.appliying, applying.comid FROM applying INNER JOIN cus ON applying.cusid = cus.cusid";
+			query = "SELECT applying.appid,cus.cusname,com.comname,announce.aboutjob,applying.status FROM ((applying inner join com on applying.comid=com.comid)inner join cus on applying.cusid=cus.cusid)inner join announce on applying.anid=announce.anid where com.comid = '"
+					+ comid + "'";
 			PreparedStatement pre;
 			pre = conn.prepareStatement(query);
 			ResultSet rs = pre.executeQuery();
-
+			/*
+			 * stmt = conn.createStatement(); rs = stmt.executeQuery(query);
+			 */
+			// table.setModel(DbUtils.resultSetToTableModel(rs));
 			int row = 0;
 			while ((rs != null) && (rs.next())) {
-				model.addRow(new Object[0]);
 				model.addRow(new Object[0]);
 				model.setValueAt(rs.getString(1), row, 0);
 				model.setValueAt(rs.getString(2), row, 1);
 				model.setValueAt(rs.getString(3), row, 2);
 				model.setValueAt(rs.getString(4), row, 3);
-				model.setValueAt(rs.getString(5), row, 4);
-				model.setValueAt(rs.getString(6), row, 5);
-				model.setValueAt(rs.getString(7), row, 6);
+                model.setValueAt(rs.getString(5), row, 4);
 				 // model.setValueAt(rs.getString(6), row, 5);
 				 
 
@@ -121,6 +120,7 @@ public class JobOffering {
 			System.err.println(eb);
 
 		}
+
 		
 		JLabel label = new JLabel("\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E2A\u0E16\u0E32\u0E19\u0E30\u0E1C\u0E39\u0E49\u0E2A\u0E21\u0E31\u0E04\u0E23");
 		label.setFont(new Font("Tahoma", Font.BOLD, 25));

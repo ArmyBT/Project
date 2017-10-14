@@ -9,7 +9,7 @@ public class SearchCus {
 
 	private int cusid;
     private String cusname;
-    private Date bdate;
+    private String bdate;
     private String graduatedfrom;
     private String faculty;
     private String talent;
@@ -21,7 +21,7 @@ public class SearchCus {
     
     
     
-    public SearchCus(int Id,String Name,Date Date,String Graduatedfrom, String Faculty, String Talent, String Address, String Phone, String Education, String AboutME, String Email)
+    public SearchCus(int Id,String Name,String Date,String Graduatedfrom, String Faculty, String Talent, String Address, String Phone, String Education, String AboutME, String Email)
     {
     	this.cusid=Id;
     	this.cusname=Name;
@@ -45,7 +45,7 @@ public class SearchCus {
     {
         return cusname;
     }
-    public Date getDate()
+    public String getDate()
     {
     	return bdate;
     }

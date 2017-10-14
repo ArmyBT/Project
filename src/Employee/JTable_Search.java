@@ -3,10 +3,8 @@ package Employee;
 //Creates new form JTable_Search
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -168,7 +166,7 @@ public class JTable_Search extends javax.swing.JFrame {
              user = new SearchCus(
             		 rs.getInt("cusid"),
             		 rs.getString("cusname"),
-            		 rs.getDate("bdate"),
+            		 rs.getString("bdate"),
             		 rs.getString("graduatedfrom"),
             		 rs.getString("faculty"),
             		 rs.getString("talent"),
